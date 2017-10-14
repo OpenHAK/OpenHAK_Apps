@@ -1,0 +1,23 @@
+From 757a2a9016cbe4db065e1bf397cc1f18d323ff1c Mon Sep 17 00:00:00 2001
+From: KoenLav <k.lavrijssen@gmail.com>
+Date: Fri, 20 Jan 2017 16:43:09 +0100
+Subject: [PATCH 2/3] Lazy bugfix?
+
+---
+ src/ios/ChromeSocketsTcp.m | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/ios/ChromeSocketsTcp.m b/src/ios/ChromeSocketsTcp.m
+index 3916a12..7dfc573 100644
+--- a/src/ios/ChromeSocketsTcp.m
++++ b/src/ios/ChromeSocketsTcp.m
+@@ -516,7 +516,7 @@ - (void)disconnectSocketWithId:(NSNumber*)socketId callbackId:(NSString*)theCall
+         socket->_disconnectCallback = nil;
+         callback();
+     } else {
+-        [socket->_socket disconnectAfterReadingAndWriting];
++        [socket->_socket disconnect];
+     }      
+ }
+ 
+

@@ -1,0 +1,39 @@
+{
+  "name": "cordova-plugin-chrome-apps-common",
+  "version": "1.0.7",
+  "description": "This plugin is a dependency for a few other chromium plugins.",
+  "cordova": {
+    "id": "cordova-plugin-chrome-apps-common",
+    "platforms": []
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MobileChromeApps/cordova-plugin-chrome-apps-common.git"
+  },
+  "keywords": [
+    "chrome",
+    "common",
+    "util",
+    "ecosystem:cordova"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/MobileChromeApps/cordova-plugin-chrome-apps-common/issues"
+  },
+  "homepage": "https://github.com/MobileChromeApps/cordova-plugin-chrome-apps-common",
+  "readme": "# chrome-common\nThis plugin is a dependency for a few other chromium plugins.\n\n# Release Notes\n\n## 1.0.7 (April 30, 2015)\n- Renamed plugin to pubilsh to NPM\n\n## 1.0.6 (Mar 17, 2015)\n* Update code comment\n\n## 1.0.5 (Jan 27, 2015)\n* chrome.runtime: fix getURL when running in Cordova (fixes #487) - Only use manifest to resolve url when running in a Chrome App - Generate correct urls when running under Cordova, based on current location\n* Make all Event.fire()s equate to queueStartUpEvent calls.\n* Change helpers.delayDeviceReadyUntil() and helpers.queueLifeCycleEvent()\n* Allow setting error.code as well as error.message for callbackWithError()\n* Don't log all errors by default, let apps handle runtime.lastError silently\n\n## 1.0.4 (November 17,2014)\n* chrome.alarms: Make it more robust and prevent onLaunched when onAlarm is the cause of the Activity starting up\n\n## 1.0.3 (October 21, 2014)\n* Documentation updates.\n",
+  "readmeFilename": "README.md",
+  "_id": "cordova-plugin-chrome-apps-common@1.0.7",
+  "dist": {
+    "shasum": "303c2b01b18631e0e2a02c1dd2a585d842da9acb"
+  },
+  "_from": "cordova-plugin-chrome-apps-common@1",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-chrome-apps-common/-/cordova-plugin-chrome-apps-common-1.0.7.tgz"
+}

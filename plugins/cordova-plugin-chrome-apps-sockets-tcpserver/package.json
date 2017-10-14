@@ -1,0 +1,46 @@
+{
+  "name": "cordova-plugin-chrome-apps-sockets-tcpserver",
+  "version": "1.2.4",
+  "description": "This plugin provides TCP server sockets for Android and iOS.",
+  "cordova": {
+    "id": "cordova-plugin-chrome-apps-sockets-tcpserver",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MobileChromeApps/cordova-plugin-chrome-apps-sockets-tcpServer.git"
+  },
+  "keywords": [
+    "chrome",
+    "socket",
+    "sockets",
+    "tcp",
+    "server",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/MobileChromeApps/cordova-plugin-chrome-apps-sockets-tcpServer/issues"
+  },
+  "homepage": "https://github.com/MobileChromeApps/cordova-plugin-chrome-apps-sockets-tcpServer",
+  "readme": "# chrome.sockets.tcpServer Plugin\n\nThis plugin provides TCP server sockets for Android and iOS.\n\n## Status\n\nBeta on Android and iOS.\n\n## Reference\n\nThe API reference is [here](https://developer.chrome.com/apps/sockets_tcpServer).\n\n# Release Notes\n\n## 1.2.4 (Dec 9, 2016)\n- Fix Android ignoring IP address for `listen()`\n\n## 1.2.3 (April 30, 2015)\n- Renamed plugin to pubilsh to NPM\n\n## 1.2.2 (Mar 17, 2015)\n* ios: Fix warning about signed/unsigned ints\n\n## 1.2.1 (Jan 27, 2015)\n* Fix compile errors on cordova-android@3.x (fixes #506)\n\n## 1.2.0 (November 17, 2014)\n* Remove unnecessary headers for chrome.sockets.* - ios\n* Fix possible blocks leak memory\n* Fixed chrome.sockets.udp socket close with error problem\n* chrome.sockets: open selector in selector thread\n* Don't modify interest set when key is invalid (fix #388)\n\n## 1.1.0 (October 24, 2014)\n* Add chrome.sockets.secure.tcp and refactor chrome.sockets.*\n\n## 1.0.1 (October 21, 2014)\n* Changed plugin id to be compatible with Cordova plugman\n\n## 1.0.0 (October 21, 2014)\n* Initial release\n",
+  "readmeFilename": "README.md",
+  "_id": "cordova-plugin-chrome-apps-sockets-tcpserver@1.2.4",
+  "dist": {
+    "shasum": "afc2c3300c5def9cc022e469068e7af09956c80c"
+  },
+  "_from": "cordova-plugin-chrome-apps-sockets-tcpserver@",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-chrome-apps-sockets-tcpserver/-/cordova-plugin-chrome-apps-sockets-tcpserver-1.2.4.tgz"
+}

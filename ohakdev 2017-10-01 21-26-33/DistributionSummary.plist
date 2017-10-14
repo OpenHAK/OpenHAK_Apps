@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ohakdev.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>2E0886EC6D55A66BE0D58D19A5D1ED24A75B9435</string>
+				<key>dateExpires</key>
+				<string>10/1/18</string>
+				<key>type</key>
+				<string>iOS Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>Y8BUAV35Q6.com.openhak.devapp</string>
+				<key>beta-reports-active</key>
+				<true/>
+				<key>com.apple.developer.team-identifier</key>
+				<string>Y8BUAV35Q6</string>
+				<key>get-task-allow</key>
+				<false/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>Y8BUAV35Q6.com.openhak.devapp</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>ohakdev.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>5ea30932-ced6-4e8e-9cc9-94b23492ded5</string>
+				<key>name</key>
+				<string>iOS Team Store Provisioning Profile: com.openhak.devapp</string>
+			</dict>
+			<key>symbols</key>
+			<true/>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>Y8BUAV35Q6</string>
+				<key>name</key>
+				<string>leif Percifield</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

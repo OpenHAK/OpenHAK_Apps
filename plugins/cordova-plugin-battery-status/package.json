@@ -1,0 +1,68 @@
+{
+  "name": "cordova-plugin-battery-status",
+  "version": "1.2.4",
+  "description": "Cordova Battery Plugin",
+  "types": "./types/index.d.ts",
+  "cordova": {
+    "id": "cordova-plugin-battery-status",
+    "platforms": [
+      "android",
+      "amazon-fireos",
+      "ubuntu",
+      "ios",
+      "blackberry10",
+      "wp7",
+      "wp8",
+      "tizen",
+      "firefoxos"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apache/cordova-plugin-battery-status"
+  },
+  "keywords": [
+    "cordova",
+    "battery",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-amazon-fireos",
+    "cordova-ubuntu",
+    "cordova-ios",
+    "cordova-blackberry10",
+    "cordova-wp7",
+    "cordova-wp8",
+    "cordova-tizen",
+    "cordova-firefoxos"
+  ],
+  "scripts": {
+    "test": "npm run jshint",
+    "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint tests"
+  },
+  "author": {
+    "name": "Apache Software Foundation"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "cordovaDependencies": {
+      "2.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "devDependencies": {
+    "jshint": "^2.6.0"
+  },
+  "readme": "---\ntitle: Battery Status\ndescription: Get events for device battery level.\n---\n<!--\n# license: Licensed to the Apache Software Foundation (ASF) under one\n#         or more contributor license agreements.  See the NOTICE file\n#         distributed with this work for additional information\n#         regarding copyright ownership.  The ASF licenses this file\n#         to you under the Apache License, Version 2.0 (the\n#         \"License\"); you may not use this file except in compliance\n#         with the License.  You may obtain a copy of the License at\n#\n#           http://www.apache.org/licenses/LICENSE-2.0\n#\n#         Unless required by applicable law or agreed to in writing,\n#         software distributed under the License is distributed on an\n#         \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n#         KIND, either express or implied.  See the License for the\n#         specific language governing permissions and limitations\n#         under the License.\n-->\n\n|Android 4.4|Android 5.1|Android 6.0|iOS 9.3|iOS 10.0|Windows 10 Store|Travis CI|\n|:-:|:-:|:-:|:-:|:-:|:-:|:-:|\n|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=android-4.4,PLUGIN=cordova-plugin-battery-status)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=android-4.4,PLUGIN=cordova-plugin-battery-status/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=android-5.1,PLUGIN=cordova-plugin-battery-status)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=android-5.1,PLUGIN=cordova-plugin-battery-status/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=android-6.0,PLUGIN=cordova-plugin-battery-status)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=android-6.0,PLUGIN=cordova-plugin-battery-status/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=ios-9.3,PLUGIN=cordova-plugin-battery-status)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=ios-9.3,PLUGIN=cordova-plugin-battery-status/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=ios-10.0,PLUGIN=cordova-plugin-battery-status)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=ios-10.0,PLUGIN=cordova-plugin-battery-status/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=windows-10-store,PLUGIN=cordova-plugin-battery-status)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=windows-10-store,PLUGIN=cordova-plugin-battery-status/)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-battery-status.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-battery-status)|\n\n# cordova-plugin-battery-status\n\nThis plugin provides an implementation of an old version of the [Battery Status Events API][w3c_spec]. It adds the following three events to the `window` object:\n\n* batterystatus\n* batterycritical\n* batterylow\n\nApplications may use `window.addEventListener` to attach an event listener for any of the above events after the `deviceready` event fires.\n\n## Installation\n\n    cordova plugin add cordova-plugin-battery-status\n\n## Status object\n\nAll events in this plugin return an object with the following properties:\n\n- __level__: The battery charge percentage (0-100). _(Number)_\n- __isPlugged__: A boolean that indicates whether the device is plugged in. _(Boolean)_\n\n## batterystatus event\n\nFires when the battery charge percentage changes by at least 1 percent, or when the device is plugged in or unplugged. Returns an [object][status_object] containing battery status.\n\n### Example\n\n    window.addEventListener(\"batterystatus\", onBatteryStatus, false);\n\n    function onBatteryStatus(status) {\n        console.log(\"Level: \" + status.level + \" isPlugged: \" + status.isPlugged);\n    }\n\n### Supported Platforms\n\n- Amazon Fire OS\n- iOS\n- Android\n- BlackBerry 10\n- Windows Phone 7 and 8\n- Windows (Windows Phone 8.1 and Windows 10)\n- Firefox OS\n- Browser (Chrome, Firefox, Opera)\n\n### Quirks: Android &amp; Amazon Fire OS\n\n**Warning**: the Android and Fire OS implementations are greedy and prolonged use will drain the device's battery.\n\n### Quirks: Windows Phone 7 &amp; Windows Phone 8\n\nThe `level` property is _not_ supported on Windows Phone 7 because the OS does not provide native APIs to determine battery level. The `isPlugged` parameter _is_ supported.\n\n### Quirks: Windows Phone 8.1\n\nThe `isPlugged` parameter is _not_ supported on Windows Phone 8.1. The `level` parameter _is_ supported.\n\n## batterylow event\n\nFires when the battery charge percentage reaches the low charge threshold. This threshold value is device-specific. Returns an [object][status_object] containing battery status.\n\n### Example\n\n    window.addEventListener(\"batterylow\", onBatteryLow, false);\n\n    function onBatteryLow(status) {\n        alert(\"Battery Level Low \" + status.level + \"%\");\n    }\n\n### Supported Platforms\n\n- Amazon Fire OS\n- iOS\n- Android\n- BlackBerry 10\n- Firefox OS\n- Windows (Windows Phone 8.1 and Windows 10)\n- Browser (Chrome, Firefox, Opera)\n\n### Quirks: Windows Phone 8.1\n\nThe `batterylow` event fires on Windows Phone 8.1 irrespective of whether the device is plugged in or not. This happens because the OS does not provide an API to detect whether the device is plugged in.\n\n## batterycritical event\n\nFires when the battery charge percentage reaches the critical charge threshold. This threshold value is device-specific. Returns an [object][status_object] containing battery status.\n\n### Example\n\n    window.addEventListener(\"batterycritical\", onBatteryCritical, false);\n\n    function onBatteryCritical(status) {\n        alert(\"Battery Level Critical \" + status.level + \"%\\nRecharge Soon!\");\n    }\n\n### Supported Platforms\n\n- Amazon Fire OS\n- iOS\n- Android\n- BlackBerry 10\n- Firefox OS\n- Windows (Windows Phone 8.1 and Windows 10)\n- Browser (Chrome, Firefox, Opera)\n\n### Quirks: Windows Phone 8.1\n\nThe `batterycritical` event fires on Windows Phone 8.1 irrespective of whether the device is plugged in or not. This happens because the OS does not provide an API to detect whether the device is plugged in.\n\n[w3c_spec]: http://www.w3.org/TR/2011/WD-battery-status-20110915/\n[status_object]: #status-object\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/apache/cordova-plugin-battery-status/issues"
+  },
+  "homepage": "https://github.com/apache/cordova-plugin-battery-status",
+  "_id": "cordova-plugin-battery-status@1.2.4",
+  "dist": {
+    "shasum": "fedaf9e24795d5e9512abe55101059cf6aee3767"
+  },
+  "_from": "cordova-plugin-battery-status@",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-battery-status/-/cordova-plugin-battery-status-1.2.4.tgz"
+}

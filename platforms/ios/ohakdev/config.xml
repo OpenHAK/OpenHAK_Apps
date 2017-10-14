@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.openhak.devapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <preference name="AllowInlineMediaPlayback" value="false" />
+    <preference name="BackupWebStorage" value="cloud" />
+    <preference name="DisallowOverscroll" value="false" />
+    <preference name="EnableViewportScale" value="false" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
+    <preference name="MediaPlaybackRequiresUserAction" value="false" />
+    <preference name="SuppressesIncrementalRendering" value="false" />
+    <preference name="SuppressesLongPressGesture" value="false" />
+    <preference name="Suppresses3DTouchGesture" value="false" />
+    <preference name="GapBetweenPages" value="0" />
+    <preference name="PageLength" value="0" />
+    <preference name="PaginationBreakingMode" value="page" />
+    <preference name="PaginationMode" value="unpaginated" />
+    <feature name="LocalStorage">
+        <param name="ios-package" value="CDVLocalStorage" />
+    </feature>
+    <feature name="HandleOpenUrl">
+        <param name="ios-package" value="CDVHandleOpenURL" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="IntentAndNavigationFilter">
+        <param name="ios-package" value="CDVIntentAndNavigationFilter" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="GestureHandler">
+        <param name="ios-package" value="CDVGestureHandler" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Battery">
+        <param name="ios-package" value="CDVBattery" />
+    </feature>
+    <feature name="BLE">
+        <param name="ios-package" value="EVOBLE" />
+    </feature>
+    <feature name="Camera">
+        <param name="ios-package" value="CDVCamera" />
+    </feature>
+    <preference name="CameraUsesGeolocation" value="false" />
+    <feature name="Console">
+        <param name="ios-package" value="CDVLogger" />
+    </feature>
+    <feature name="Device">
+        <param name="ios-package" value="CDVDevice" />
+    </feature>
+    <feature name="Accelerometer">
+        <param name="ios-package" value="CDVAccelerometer" />
+    </feature>
+    <feature name="Compass">
+        <param name="ios-package" value="CDVCompass" />
+    </feature>
+    <feature name="Notification">
+        <param name="ios-package" value="CDVNotification" />
+    </feature>
+    <feature name="File">
+        <param name="ios-package" value="CDVFile" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="ios-package" value="CDVConnection" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <feature name="Vibration">
+        <param name="ios-package" value="CDVVibration" />
+    </feature>
+    <feature name="LocalNotification">
+        <param name="ios-package" onload="true" value="APPLocalNotification" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="IosSocketsCommon">
+        <param name="ios-package" value="IosSocketsCommon" />
+    </feature>
+    <feature name="ChromeSocketsTcp">
+        <param name="ios-package" value="ChromeSocketsTcp" />
+    </feature>
+    <feature name="ChromeSocketsTcpServer">
+        <param name="ios-package" value="ChromeSocketsTcpServer" />
+    </feature>
+    <feature name="ChromeSocketsUdp">
+        <param name="ios-package" value="ChromeSocketsUdp" />
+    </feature>
+    <feature name="ChromeSystemNetwork">
+        <param name="ios-package" value="ChromeSystemNetwork" />
+    </feature>
+    <allow-intent href="itms:*" />
+    <allow-intent href="itms-apps:*" />
+    <icon height="180" src="../res/icons/ios/icon-60@3x.png" width="180" />
+    <icon height="60" src="../res/icons/ios/icon-60.png" width="60" />
+    <icon height="120" src="../res/icons/ios/icon-60@2x.png" width="120" />
+    <icon height="76" src="../res/icons/ios/icon-76.png" width="76" />
+    <icon height="152" src="../res/icons/ios/icon-76@2x.png" width="152" />
+    <icon height="40" src="../res/icons/ios/icon-40.png" width="40" />
+    <icon height="80" src="../res/icons/ios/icon-40@2x.png" width="80" />
+    <icon height="57" src="../res/icons/ios/icon.png" width="57" />
+    <icon height="114" src="../res/icons/ios/icon@2x.png" width="114" />
+    <icon height="72" src="../res/icons/ios/icon-72.png" width="72" />
+    <icon height="144" src="../res/icons/ios/icon-72@2x.png" width="144" />
+    <icon height="167" src="../res/icons/ios/icon-167.png" width="167" />
+    <icon height="29" src="../res/icons/ios/icon-small.png" width="29" />
+    <icon height="58" src="../res/icons/ios/icon-small@2x.png" width="58" />
+    <icon height="50" src="../res/icons/ios/icon-50.png" width="50" />
+    <icon height="100" src="../res/icons/ios/icon-50@2x.png" width="100" />
+    <icon height="167" src="../res/icons/ios/icon-83.5@2x.png" width="167" />
+    <name>ohakdev</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+</widget>

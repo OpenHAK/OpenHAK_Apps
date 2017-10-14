@@ -1,0 +1,83 @@
+{
+  "uuid": "cbf8303a-dc9b-44e0-828a-bb70304fb990",
+  "plugins": [
+    {
+      "name": "cordova-plugin-battery-status"
+    },
+    {
+      "name": "cordova-plugin-ble",
+      "version": "2.0.1"
+    },
+    {
+      "name": "cordova-plugin-camera"
+    },
+    {
+      "name": "cordova-plugin-chrome-apps-sockets-tcp"
+    },
+    {
+      "name": "cordova-plugin-chrome-apps-sockets-tcpserver"
+    },
+    {
+      "name": "cordova-plugin-chrome-apps-sockets-udp"
+    },
+    {
+      "name": "cordova-plugin-chrome-apps-system-network"
+    },
+    {
+      "name": "cordova-plugin-console"
+    },
+    {
+      "name": "cordova-plugin-device"
+    },
+    {
+      "name": "cordova-plugin-device-motion"
+    },
+    {
+      "name": "cordova-plugin-device-orientation"
+    },
+    {
+      "name": "cordova-plugin-dialogs"
+    },
+    {
+      "name": "cordova-plugin-geolocation"
+    },
+    {
+      "name": "cordova-plugin-inappbrowser"
+    },
+    {
+      "name": "cordova-plugin-network-information"
+    },
+    {
+      "name": "cordova-plugin-statusbar"
+    },
+    {
+      "name": "cordova-plugin-vibration"
+    },
+    {
+      "name": "cordova-plugin-whitelist"
+    },
+    {
+      "name": "de.appplant.cordova.plugin.local-notification",
+      "version": "0.8.4"
+    }
+  ],
+  "libraries": [
+    {
+      "name": "framework7",
+      "version": "1.4.2"
+    },
+    {
+      "name": "jquery",
+      "version": "2.1.1"
+    }
+  ],
+  "name": "openhak",
+  "title": "OpenHAK",
+  "description": "App to control OpenHAK",
+  "long-description": "App to control OpenHAK Hardware Device",
+  "version": "0.1.0",
+  "author-name": "Leif Percifield",
+  "author-email": "lpercifield@gmail.com",
+  "author-url": "https://openhak.com",
+  "cordova-id": "com.openhak.device"
+}

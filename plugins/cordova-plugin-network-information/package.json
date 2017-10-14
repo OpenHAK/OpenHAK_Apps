@@ -1,0 +1,75 @@
+{
+  "name": "cordova-plugin-network-information",
+  "version": "1.3.3",
+  "description": "Cordova Network Information Plugin",
+  "types": "./types/index.d.ts",
+  "cordova": {
+    "id": "cordova-plugin-network-information",
+    "platforms": [
+      "firefoxos",
+      "android",
+      "amazon-fireos",
+      "ubuntu",
+      "ios",
+      "blackberry10",
+      "wp7",
+      "wp8",
+      "windows8",
+      "windows",
+      "tizen",
+      "browser"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apache/cordova-plugin-network-information"
+  },
+  "keywords": [
+    "cordova",
+    "network",
+    "information",
+    "ecosystem:cordova",
+    "cordova-firefoxos",
+    "cordova-android",
+    "cordova-amazon-fireos",
+    "cordova-ubuntu",
+    "cordova-ios",
+    "cordova-blackberry10",
+    "cordova-wp7",
+    "cordova-wp8",
+    "cordova-windows8",
+    "cordova-windows",
+    "cordova-tizen",
+    "cordova-browser"
+  ],
+  "scripts": {
+    "test": "npm run jshint",
+    "jshint": "jshint www && jshint src && jshint tests"
+  },
+  "author": {
+    "name": "Apache Software Foundation"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "cordovaDependencies": {
+      "2.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "devDependencies": {
+    "jshint": "^2.6.0"
+  },
+  "readme": "---\ntitle: Network Information\ndescription: Get information about wireless connectivity.\n---\n<!--\n# license: Licensed to the Apache Software Foundation (ASF) under one\n#         or more contributor license agreements.  See the NOTICE file\n#         distributed with this work for additional information\n#         regarding copyright ownership.  The ASF licenses this file\n#         to you under the Apache License, Version 2.0 (the\n#         \"License\"); you may not use this file except in compliance\n#         with the License.  You may obtain a copy of the License at\n#\n#           http://www.apache.org/licenses/LICENSE-2.0\n#\n#         Unless required by applicable law or agreed to in writing,\n#         software distributed under the License is distributed on an\n#         \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n#         KIND, either express or implied.  See the License for the\n#         specific language governing permissions and limitations\n#         under the License.\n-->\n\n|Android 4.4|Android 5.1|Android 6.0|iOS 9.3|iOS 10.0|Windows 10 Store|Travis CI|\n|:-:|:-:|:-:|:-:|:-:|:-:|:-:|\n|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=android-4.4,PLUGIN=cordova-plugin-network-information)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=android-4.4,PLUGIN=cordova-plugin-network-information/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=android-5.1,PLUGIN=cordova-plugin-network-information)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=android-5.1,PLUGIN=cordova-plugin-network-information/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=android-6.0,PLUGIN=cordova-plugin-network-information)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=android-6.0,PLUGIN=cordova-plugin-network-information/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=ios-9.3,PLUGIN=cordova-plugin-network-information)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=ios-9.3,PLUGIN=cordova-plugin-network-information/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=ios-10.0,PLUGIN=cordova-plugin-network-information)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=ios-10.0,PLUGIN=cordova-plugin-network-information/)|[![Build Status](http://cordova-ci.cloudapp.net:8080/buildStatus/icon?job=cordova-periodic-build/PLATFORM=windows-10-store,PLUGIN=cordova-plugin-network-information)](http://cordova-ci.cloudapp.net:8080/job/cordova-periodic-build/PLATFORM=windows-10-store,PLUGIN=cordova-plugin-network-information/)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-network-information.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-network-information)|\n\n# cordova-plugin-network-information\n\n\nThis plugin provides an implementation of an old version of the\n[Network Information API](http://www.w3.org/TR/2011/WD-netinfo-api-20110607/).\nIt provides information about the device's cellular and\nwifi connection, and whether the device has an internet connection.\n\n> To get a few ideas how to use the plugin, check out the [sample](#sample) at the bottom of this page or go straight to the [reference](#reference) content.\n\nReport issues with this plugin on the [Apache Cordova issue tracker][Apache Cordova issue tracker].\n\n##<a name=\"reference\"></a>Reference\n\n## Installation\n\n    cordova plugin add cordova-plugin-network-information\n\n## Supported Platforms\n\n- Amazon Fire OS\n- Android\n- BlackBerry 10\n- Browser\n- iOS\n- Windows Phone 7 and 8\n- Tizen\n- Windows\n- Firefox OS\n\n# Connection\n\n> The `connection` object, exposed via `navigator.connection`,  provides information about the device's cellular and wifi connection.\n\n## Properties\n\n- connection.type\n\n## Constants\n\n- Connection.UNKNOWN\n- Connection.ETHERNET\n- Connection.WIFI\n- Connection.CELL_2G\n- Connection.CELL_3G\n- Connection.CELL_4G\n- Connection.CELL\n- Connection.NONE\n\n## connection.type\n\nThis property offers a fast way to determine the device's network\nconnection state, and type of connection.\n\n### Quick Example\n\n```js\nfunction checkConnection() {\n    var networkState = navigator.connection.type;\n\n    var states = {};\n    states[Connection.UNKNOWN]  = 'Unknown connection';\n    states[Connection.ETHERNET] = 'Ethernet connection';\n    states[Connection.WIFI]     = 'WiFi connection';\n    states[Connection.CELL_2G]  = 'Cell 2G connection';\n    states[Connection.CELL_3G]  = 'Cell 3G connection';\n    states[Connection.CELL_4G]  = 'Cell 4G connection';\n    states[Connection.CELL]     = 'Cell generic connection';\n    states[Connection.NONE]     = 'No network connection';\n\n    alert('Connection type: ' + states[networkState]);\n}\n\ncheckConnection();\n```\n\n### API Change\n\nUntil Cordova 2.3.0, the `Connection` object was accessed via\n`navigator.network.connection`, after which it was changed to\n`navigator.connection` to match the W3C specification.  It's still\navailable at its original location, but is deprecated and will\neventually be removed.\n\n### iOS Quirks\n\n- <iOS7 can't detect the type of cellular network connection.\n    - `navigator.connection.type` is set to `Connection.CELL` for all cellular data.\n\n### Windows Phone Quirks\n\n- When running in the emulator, always detects `navigator.connection.type` as `Connection.UNKNOWN`.\n\n- Windows Phone can't detect the type of cellular network connection.\n    - `navigator.connection.type` is set to `Connection.CELL` for all cellular data.\n\n### Windows Quirks\n\n- When running in the Phone 8.1 emulator, always detects `navigator.connection.type` as `Connection.ETHERNET`.\n\n### Tizen Quirks\n\n- Tizen can only detect a WiFi or cellular connection.\n    - `navigator.connection.type` is set to `Connection.CELL_2G` for all cellular data.\n\n### Firefox OS Quirks\n\n- Firefox OS can't detect the type of cellular network connection.\n    - `navigator.connection.type` is set to `Connection.CELL` for all cellular data.\n\n### Browser Quirks\n\n- Browser can't detect the type of network connection.\n`navigator.connection.type` is always set to `Connection.UNKNOWN` when online.\n\n# Network-related Events\n\n## offline\n\nThe event fires when an application goes offline, and the device is\nnot connected to the Internet.\n\n    document.addEventListener(\"offline\", yourCallbackFunction, false);\n\n### Details\n\nThe `offline` event fires when a previously connected device loses a\nnetwork connection so that an application can no longer access the\nInternet.  It relies on the same information as the Connection API,\nand fires when the value of `connection.type` becomes `NONE`.\n\nApplications typically should use `document.addEventListener` to\nattach an event listener once the `deviceready` event fires.\n\n### Quick Example\n\n```js\ndocument.addEventListener(\"offline\", onOffline, false);\n\nfunction onOffline() {\n    // Handle the offline event\n}\n```\n\n### iOS Quirks\n\nDuring initial startup, the first offline event (if applicable) takes at least a second to fire.\n\n### Windows Phone 7 Quirks\n\nWhen running in the Emulator, the `connection.status` is always unknown, so this event does _not_ fire.\n\n### Windows Phone 8 Quirks\n\nThe Emulator reports the connection type as `Cellular`, which does not change, so the event does _not_ fire.\n\n## online\n\nThis event fires when an application goes online, and the device\nbecomes connected to the Internet.\n\n    document.addEventListener(\"online\", yourCallbackFunction, false);\n\n### Details\n\nThe `online` event fires when a previously unconnected device receives\na network connection to allow an application access to the Internet.\nIt relies on the same information as the Connection API,\nand fires when the `connection.type` changes from `NONE` to any other\nvalue.\n\nApplications typically should use `document.addEventListener` to\nattach an event listener once the `deviceready` event fires.\n\n### Quick Example\n\n```js\ndocument.addEventListener(\"online\", onOnline, false);\n\nfunction onOnline() {\n    // Handle the online event\n}\n```\n\n### iOS Quirks\n\nDuring initial startup, the first `online` event (if applicable) takes\nat least a second to fire, prior to which `connection.type` is\n`UNKNOWN`.\n\n### Windows Phone 7 Quirks\n\nWhen running in the Emulator, the `connection.status` is always unknown, so this event does _not_ fire.\n\n### Windows Phone 8 Quirks\n\nThe Emulator reports the connection type as `Cellular`, which does not change, so events does _not_ fire.\n\n## Sample: Upload a File Depending on your Network State <a name=\"sample\"></a>\n\nThe code examples in this section show examples of changing app behavior using the online and offline events and your network connection status.\n\nTo start with, create a new FileEntry object (data.txt) to use for sample data. Call this function from the `deviceready` handler.\n\n>*Note* This code example requires the File plugin.\n\n```js\nvar dataFileEntry;\n\nfunction createSomeData() {\n\n    window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, function (fs) {\n\n        console.log('file system open: ' + fs.name);\n        // Creates a new file or returns an existing file.\n        fs.root.getFile(\"data.txt\", { create: true, exclusive: false }, function (fileEntry) {\n\n          dataFileEntry = fileEntry;\n\n        }, onErrorCreateFile);\n\n    }, onErrorLoadFs);\n}\n```\n\nNext, add listeners for the online and offline events in the `deviceready` handler.\n\n```js\ndocument.addEventListener(\"offline\", onOffline, false);\ndocument.addEventListener(\"online\", onOnline, false);\n```\n\nThe app's `onOnline` function handles the online event. In the event handler, check the current network state. In this app, treat any connection type as good except Connection.NONE. If you have a connection, you try to upload a file.\n\n```js\nfunction onOnline() {\n    // Handle the online event\n    var networkState = navigator.connection.type;\n\n    if (networkState !== Connection.NONE) {\n        if (dataFileEntry) {\n            tryToUploadFile();\n        }\n    }\n    display('Connection type: ' + networkState);\n}\n```\n\nWhen the online event fires in the preceding code, call the app's `tryToUploadFile` function.\n\nIf the FileTransfer object's upload function fails, call the app's `offlineWrite` function to save the current data somewhere.\n\n>*Note* This example requires the FileTransfer plugin.\n\n```js\nfunction tryToUploadFile() {\n    // !! Assumes variable fileURL contains a valid URL to a text file on the device,\n    var fileURL = getDataFileEntry().toURL();\n\n    var success = function (r) {\n        console.log(\"Response = \" + r.response);\n        display(\"Uploaded. Response: \" + r.response);\n    }\n\n    var fail = function (error) {\n        console.log(\"An error has occurred: Code = \" + error.code);\n        offlineWrite(\"Failed to upload: some offline data\");\n    }\n\n    var options = new FileUploadOptions();\n    options.fileKey = \"file\";\n    options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);\n    options.mimeType = \"text/plain\";\n\n    var ft = new FileTransfer();\n    // Make sure you add the domain of your server URL to the\n    // Content-Security-Policy <meta> element in index.html.\n    ft.upload(fileURL, encodeURI(SERVER), success, fail, options);\n};\n```\n\nHere is the code for the `offlineWrite` function.\n\n>*Note* This code examples requires the File plugin.\n\n```js\nfunction offlineWrite(offlineData) {\n    // Create a FileWriter object for our FileEntry.\n    dataFileEntry.createWriter(function (fileWriter) {\n\n        fileWriter.onwriteend = function () {\n            console.log(\"Successful file write...\");\n            display(offlineData);\n        };\n\n        fileWriter.onerror = function (e) {\n            console.log(\"Failed file write: \" + e.toString());\n        };\n\n        fileWriter.write(offlineData);\n    });\n}\n```\n\nIf the offline event occurs, just do something like notify the user (for this example, just log it).\n\n```js\nfunction onOffline() {\n    // Handle the offline event\n    console.log(\"lost connection\");\n}\n```\n \n[Apache Cordova issue tracker]: https://issues.apache.org/jira/issues/?jql=project%20%3D%20CB%20AND%20status%20in%20%28Open%2C%20%22In%20Progress%22%2C%20Reopened%29%20AND%20resolution%20%3D%20Unresolved%20AND%20component%20%3D%20%22Plugin%20Network%20Information%22%20ORDER%20BY%20priority%20DESC%2C%20summary%20ASC%2C%20updatedDate%20DESC\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/apache/cordova-plugin-network-information/issues"
+  },
+  "homepage": "https://github.com/apache/cordova-plugin-network-information",
+  "_id": "cordova-plugin-network-information@1.3.3",
+  "dist": {
+    "shasum": "0ea9aa5c1124cf7cbd6f84f828a542cbd24a8518"
+  },
+  "_from": "cordova-plugin-network-information@",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-network-information/-/cordova-plugin-network-information-1.3.3.tgz"
+}

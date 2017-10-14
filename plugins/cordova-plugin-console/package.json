@@ -1,0 +1,62 @@
+{
+  "name": "cordova-plugin-console",
+  "version": "1.1.0",
+  "description": "Cordova Console Plugin",
+  "cordova": {
+    "id": "cordova-plugin-console",
+    "platforms": [
+      "ios",
+      "ubuntu",
+      "wp7",
+      "wp8",
+      "windows8",
+      "windows"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apache/cordova-plugin-console"
+  },
+  "bugs": {
+    "url": "https://issues.apache.org/jira/browse/CB"
+  },
+  "keywords": [
+    "cordova",
+    "console",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-ubuntu",
+    "cordova-wp7",
+    "cordova-wp8",
+    "cordova-windows8",
+    "cordova-windows"
+  ],
+  "scripts": {
+    "test": "npm run jshint",
+    "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint tests"
+  },
+  "author": {
+    "name": "Apache Software Foundation"
+  },
+  "license": "Apache-2.0",
+  "engines": {
+    "cordovaDependencies": {
+      ">=2.0.0": {
+        "cordova-ios": "<4.5.0",
+        "cordova-windows": "<=5.0.0"
+      }
+    }
+  },
+  "devDependencies": {
+    "jshint": "^2.6.0"
+  },
+  "readme": "---\ntitle: Console\ndescription: Get JavaScript logs in your native logs.\n---\n<!---\n# license: Licensed to the Apache Software Foundation (ASF) under one\n#         or more contributor license agreements.  See the NOTICE file\n#         distributed with this work for additional information\n#         regarding copyright ownership.  The ASF licenses this file\n#         to you under the Apache License, Version 2.0 (the\n#         \"License\"); you may not use this file except in compliance\n#         with the License.  You may obtain a copy of the License at\n#\n#           http://www.apache.org/licenses/LICENSE-2.0\n#\n#         Unless required by applicable law or agreed to in writing,\n#         software distributed under the License is distributed on an\n#         \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY\n#         KIND, either express or implied.  See the License for the\n#         specific language governing permissions and limitations\n#         under the License.\n-->\n\n|AppVeyor|Travis CI|\n|:-:|:-:|\n|[![Build status](https://ci.appveyor.com/api/projects/status/github/apache/cordova-plugin-console?branch=master)](https://ci.appveyor.com/project/ApacheSoftwareFoundation/cordova-plugin-console)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-console.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-console)|\n\n# cordova-plugin-console\n\n## Deprecated\n\n> This plugin is no longer being worked on as the functionality provided by this plugin is now included in cordova-ios 4.5.0 or greater, and support is already built in to cordova-windows > 5.0.0. You should upgrade your application to use version 2.0.0 of this plugin. It will detect whether or not the plugin is required based on the version of cordova-ios and cordova-windows your app uses.\n> Please file issues for this plugin against their respective platforms (cordova-ios, cordova-windows).\n\n## Description\n\nThis plugin is meant to ensure that console.log() is as useful as it can be.\nIt adds additional function for iOS, Ubuntu, Windows Phone 8, and Windows. If\nyou are happy with how console.log() works for you, then you probably\ndon't need this plugin.\n\nThis plugin defines a global `console` object.\n\nAlthough the object is in the global scope, features provided by this plugin\nare not available until after the `deviceready` event.\n\n    document.addEventListener(\"deviceready\", onDeviceReady, false);\n    function onDeviceReady() {\n        console.log(\"console.log works well\");\n    }\n\n:warning: Report issues on the [Apache Cordova issue tracker](https://issues.apache.org/jira/issues/?jql=project%20%3D%20CB%20AND%20status%20in%20%28Open%2C%20%22In%20Progress%22%2C%20Reopened%29%20AND%20resolution%20%3D%20Unresolved%20AND%20component%20%3D%20%22Plugin%20Console%22%20ORDER%20BY%20priority%20DESC%2C%20summary%20ASC%2C%20updatedDate%20DESC)\n\n\n## Installation\n\n    cordova plugin add cordova-plugin-console\n\n### Android Quirks\n\nOn some platforms other than Android, console.log() will act on multiple\narguments, such as console.log(\"1\", \"2\", \"3\"). However, Android will act only\non the first argument. Subsequent arguments to console.log() will be ignored.\nThis plugin is not the cause of that, it is a limitation of Android itself.\n\n## Supported Methods\n\nThe plugin support following methods of the `console` object:\n\n- `console.log`\n- `console.error`\n- `console.exception`\n- `console.warn`\n- `console.info`\n- `console.debug`\n- `console.assert`\n- `console.dir`\n- `console.dirxml`\n- `console.time`\n- `console.timeEnd`\n- `console.table`\n\n## Partially supported Methods\n\nMethods of the `console` object which implemented, but behave different from browser implementation:\n\n- `console.group`\n- `console.groupCollapsed`\n\nThe grouping methods are just log name of the group and don't actually indicate grouping for later\ncalls to `console` object methods.\n\n## Not supported Methods\n\nMethods of the `console` object which are implemented, but do nothing:\n\n- `console.clear`\n- `console.trace`\n- `console.groupEnd`\n- `console.timeStamp`\n- `console.profile`\n- `console.profileEnd`\n- `console.count`\n\n## Supported formatting\n\nThe following formatting options available:\n\nFormat chars:\n\n*  `%j` - format arg as JSON\n*  `%o` - format arg as JSON\n*  `%c` - format arg as `''`. No color formatting could be done.\n*  `%%` - replace with `'%'`\n\nAny other char following `%` will format its arg via `toString()`.\n",
+  "readmeFilename": "README.md",
+  "homepage": "https://github.com/apache/cordova-plugin-console",
+  "_id": "cordova-plugin-console@1.1.0",
+  "dist": {
+    "shasum": "deefb3166c3f4db17aac982b141f4647083c9638"
+  },
+  "_from": "cordova-plugin-console@",
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-console/-/cordova-plugin-console-1.1.0.tgz"
+}

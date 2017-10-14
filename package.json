@@ -1,0 +1,68 @@
+{
+    "name": "com.openhak.devapp",
+    "displayName": "ohakdev",
+    "version": "1.0.0",
+    "description": "A sample Apache Cordova application that responds to the deviceready event.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Apache Cordova Team",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "cordova-android": "^6.2.3",
+        "cordova-ios": "~4.0.0",
+        "cordova-plugin-app-event": "~1.2.1",
+        "cordova-plugin-battery-status": "~1.2.4",
+        "cordova-plugin-ble": "~2.0.1",
+        "cordova-plugin-camera": "~2.4.1",
+        "cordova-plugin-chrome-apps-common": "~1.0.7",
+        "cordova-plugin-chrome-apps-iossocketscommon": "~1.0.2",
+        "cordova-plugin-chrome-apps-sockets-tcp": "~1.3.7",
+        "cordova-plugin-chrome-apps-sockets-tcpserver": "~1.2.4",
+        "cordova-plugin-chrome-apps-sockets-udp": "~1.3.0",
+        "cordova-plugin-chrome-apps-system-network": "~1.1.2",
+        "cordova-plugin-compat": "~1.2.0",
+        "cordova-plugin-console": "~1.1.0",
+        "cordova-plugin-device": "~1.1.6",
+        "cordova-plugin-device-motion": "~1.2.5",
+        "cordova-plugin-device-orientation": "~1.0.7",
+        "cordova-plugin-dialogs": "~1.3.3",
+        "cordova-plugin-file": "~4.3.3",
+        "cordova-plugin-geolocation": "~2.4.3",
+        "cordova-plugin-inappbrowser": "~1.7.1",
+        "cordova-plugin-network-information": "~1.3.3",
+        "cordova-plugin-statusbar": "~2.2.3",
+        "cordova-plugin-vibration": "~2.1.5",
+        "cordova-plugin-whitelist": "~1.3.2",
+        "de.appplant.cordova.plugin.local-notification": "~0.8.5"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-battery-status": {},
+            "cordova-plugin-ble": {},
+            "cordova-plugin-camera": {},
+            "cordova-plugin-chrome-apps-sockets-tcp": {},
+            "cordova-plugin-chrome-apps-sockets-tcpserver": {},
+            "cordova-plugin-chrome-apps-sockets-udp": {},
+            "cordova-plugin-chrome-apps-system-network": {},
+            "cordova-plugin-console": {},
+            "cordova-plugin-device": {},
+            "cordova-plugin-device-motion": {},
+            "cordova-plugin-device-orientation": {},
+            "cordova-plugin-dialogs": {},
+            "cordova-plugin-geolocation": {},
+            "cordova-plugin-inappbrowser": {},
+            "cordova-plugin-network-information": {},
+            "cordova-plugin-statusbar": {},
+            "cordova-plugin-vibration": {},
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-file": {},
+            "de.appplant.cordova.plugin.local-notification": {}
+        },
+        "platforms": [
+            "android",
+            "ios"
+        ]
+    }
+}
