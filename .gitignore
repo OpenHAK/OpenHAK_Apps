@@ -20,7 +20,7 @@ platforms/ios/cordova/console.log
 
 # Node
 npm-debug.log
-node_modules
+node_modules/
 
 # Cordova
-plugins
+plugins/
