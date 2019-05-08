@@ -16,7 +16,11 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <platform name="android">
-        <allow-intent href="market:*" />
+        <allow-intent href="*" />
+        <preference name="Fullscreen" value="false" />
+        <preference name="AndroidLaunchMode" value="singleTask" />
+        <preference name="android-minSdkVersion" value="28" />
+        <preference name="android-targetSdkVersion" value="28" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
