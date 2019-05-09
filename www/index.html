@@ -88,66 +88,6 @@
 
           </ul>
           <!-- Your content goes here -->
-        </div>
-      </section>
-      <section class="mdl-layout__tab-panel is-active" id="fixed-tab-2">
-        <div class="page-content">
-          <div style="width:100%; background-color: lightblue;">
-            <!-- <p id="steps" class="lead">Total Steps: Pending Data...</p> -->
-            <!-- <div id="chart_div" style="width: 100%; height: 320px;"></div> -->
-            <!-- <div class="mdl-grid">
-              <div class="mdl-cell mdl-cell--1-col">
-                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-      <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
-      <span class="mdl-switch__label">HR</span>
-    </label>
-              </div>
-              <div class="mdl-cell mdl-cell--1-col">
-                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-      <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
-      <span class="mdl-switch__label">HR Dev</span>
-    </label>
-              </div>
-              <div class="mdl-cell mdl-cell--1-col">
-                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-      <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
-      <span class="mdl-switch__label">Steps</span>
-    </label>
-              </div>
-              <div class="mdl-cell mdl-cell--1-col">
-                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-      <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
-      <span class="mdl-switch__label">Battery</span>
-    </label>
-              </div>
-              <div class="mdl-cell mdl-cell--1-col">
-                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-      <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
-      <span class="mdl-switch__label">Aux1</span>
-    </label>
-              </div>
-              <div class="mdl-cell mdl-cell--1-col">
-                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-      <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
-      <span class="mdl-switch__label">Aux2</span>
-    </label>
-              </div>
-              <div class="mdl-cell mdl-cell--1-col">
-                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-      <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
-      <span class="mdl-switch__label">Aux3</span>
-    </label>
-              </div>
-            </div> -->
-
-            <div id="dashboard">
-              <div id="chart_div" style="width: 100%; height: 320px;"></div>
-              <div id="control_div" style="width: 100%; height: 80px;"></div>
-              <div id="filter_mobile"></div>
-              <p><span id='dbgchart'></span></p>
-            </div>
-          </div>
-          <!-- style="width: 100%; height: 220px;" -->
           <u> Debug Info: </u>
           <div class="debug_text">
             <p id="log" class="lead">Pending Logs...</p>
@@ -158,6 +98,54 @@
             <p id="batt" class="lead">Batt: Pending Data...</p>
             <p id="sampleCount" class="lead">Sample Count: Pending Data...</p>
           </div>
+        </div>
+      </section>
+      <section class="mdl-layout__tab-panel is-active" id="fixed-tab-2">
+        <div class="page-content">
+          <div style="width:100%; background-color: lightblue;">
+            <!-- <p id="steps" class="lead">Total Steps: Pending Data...</p> -->
+            <!-- <div id="chart_div" style="width: 100%; height: 320px;"></div> -->
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--1-col toggles">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                <input type="checkbox" id="switch-1" class="mdl-switch__input" checked />
+                </label>
+                <label for="switch-1"><span class="mdl-switch__label test1">HR</span></label>
+              </div>
+                <div class="mdl-cell mdl-cell--1-col toggles">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
+                <input type="checkbox" id="switch-2" class="mdl-switch__input" checked />
+                </label>
+                <label for="switch-2"><span class="mdl-switch__label test1">HR Dev</span></label>
+              </div>
+                <div class="mdl-cell mdl-cell--1-col toggles">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-3">
+                <input type="checkbox" id="switch-3" class="mdl-switch__input" checked />
+                </label>
+                <label for="switch-3"><span class="mdl-switch__label test1">AUX1</span></label>
+              </div>
+                <div class="mdl-cell mdl-cell--1-col toggles">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-4">
+                <input type="checkbox" id="switch-4" class="mdl-switch__input" checked />
+                </label>
+                <label for="switch-4"><span class="mdl-switch__label test1">AUX2</span></label>
+              </div>
+              <div class="mdl-cell mdl-cell--1-col toggles">
+              <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-5">
+              <input type="checkbox" id="switch-5" class="mdl-switch__input" checked />
+              </label>
+              <label for="switch-5"><span class="mdl-switch__label test1">AUX3</span></label>
+            </div>
+            </div>
+
+            <div id="dashboard">
+              <div id="chart_div" style="width: 100%; height: 320px;"></div>
+              <div id="control_div" style="width: 100%; height: 80px;"></div>
+              <div id="filter_mobile"></div>
+              <p><span id='dbgchart'></span></p>
+            </div>
+          </div>
+          <!-- style="width: 100%; height: 220px;" -->
           <!-- Raised button with ripple -->
           <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect generate-samples">
             Generate Samples
@@ -189,8 +177,8 @@
   <script src="//www.parsecdn.com/js/parse-1.4.0.min.js"></script>
   <script src="https://www.google.com/jsapi"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
   <script src="libs/jQRangeSlider-5.7.2/lib/jquery.mousewheel.min.js"></script>
   <script type="text/javascript" src="libs/jQRangeSlider-5.7.2/jQAllRangeSliders-min.js"></script>
   <script src="datagen.js"></script>

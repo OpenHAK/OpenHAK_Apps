@@ -3,581 +3,186 @@
 
 <head>
 
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, user-scalable=no
-		initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-	<meta http-equiv="pragma" content="no-cache" />
-	<meta http-equiv="expires" content="-1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no,
+    shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 
-	<title>OpenHAK</title>
+  <title>BLE Scan</title>
 
-	<style>
-		@import 'ui/css/evothings-app.css';
-	</style>
-
-	<style>
-		div {
-			margin: 10px 0px;
-		}
-
-		button {
-			margin: 5px 0px;
-		}
-
-		.lead {
-			font-weight: bold;
-		}
-	</style>
-
-	<script>
-		// Redirect console.log to Evothings Workbench.
-		if (window.hyper && window.hyper.log) {
-			console.log = hyper.log
-		}
-	</script>
-
-	<script src="cordova.js"></script>
-	<script src="libs/jquery/jquery.js"></script>
-	<script src="libs/evothings/evothings.js"></script>
-	<script src="libs/evothings/ui/ui.js"></script>
-	<script src="libs/evothings/rfduinoble/rfduinoble.js"></script>
-	<script src="//www.parsecdn.com/js/parse-1.4.0.min.js"></script>
-	<script src="https://www.google.com/jsapi"></script>
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-
+  <script>
+    // Redirect console.log to Evothings Workbench.
+    if (window.hyper && window.hyper.log) {
+      console.log = hyper.log
+    }
+  </script>
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
+  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="libs/mdl/material.css">
+  <link rel="stylesheet" href="libs/mdl/icons/material-icons.css">
+  <link rel="stylesheet" id="themeCSS" href="libs/jQRangeSlider-5.7.2/css/classic.css">
 </head>
 
 <body>
 
-	<header>
-		<h1>OpenHAK</h1>
-		<img class="logotype" src="ui/images/ohak_icon.svg" alt="OpenHAK" />
-	</header>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+            mdl-layout--fixed-tabs">
+
+    <!-- Header -->
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">OpenHAK</span>
+      </div>
+      <!-- Tabs -->
+      <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+        <a href="#fixed-tab-1" class="mdl-layout__tab">Device List</a>
+        <a href="#fixed-tab-2" class="mdl-layout__tab is-active">Display Stuff</a>
+      </div>
+    </header>
+    <!-- Main -->
+    <main class="mdl-layout__content">
+
+      <!-- page-start -->
+
+      <section class="mdl-layout__tab-panel" id="fixed-tab-1">
+        <div class="page-content">
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--1-col">
+              <button class="app-start-scan mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--primary mdl-button--disabled">
+      <i class="material-icons">replay</i>
+    </button>
+            </div>
+            <div class="mdl-cell mdl-cell--3-col center_text">
+              <span class="mdl-layout-title center_text">Refresh Device List</span>
+            </div>
+          </div>
+          <div class="app-buttons">
 
 
+            <!-- <button class="app-start-scan mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color-text--white mdl-button--disabled">
+              Start Scan
+          </button>
+            <button class="app-stop-scan mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color-text--white mdl-button--disabled">
+            Stop Scan
+          </button> -->
+          </div>
 
-	<p id="info" class="lead">Initializing...</p>
-	<h2>Available OpenHAKs (Click to connect)</h2>
-	<!-- TODO: buttons to start/stop scan. -->
-	<ul data-role="listview" id="deviceList">
-	</ul>
-	<button type="button" class="blue" onclick="app.scanStart()">
-		Scan
-	</button>
-	<button type="button" class="yellow" onclick="app.scanStop()">
-		Stop
-	</button>
-	<!-- <button type="button" class="yellow" onclick="app.sendTimeSync()">
-		Sync Time
-	</button> -->
-	<!-- <button type="button" class="red" onclick="app.getHistory()">
-		Get History
-	</button> -->
-	<button type="button" class="red" onclick="app.disconnect()">
-		Disconnect
-	</button>
-	<div style="width:100%; background-color: lightblue;">
-		<p id="steps" class="lead">Total Steps: Pending Data...</p>
-		<div id="chart_div" style="width: 100%; height: 320px;"></div>
-	</div>
-	<!-- style="width: 100%; height: 220px;" -->
-	<u> Debug Info: </u>
-	<p id="log" class="lead">Pending Logs...</p>
-	<p id="log2" class="lead">Pending Logs...</p>
-	<p id="time" class="lead">Time: Pending Data...</p>
-	<p id="hr" class="lead">HR: Pending Data...</p>
-	<p id="hrdev" class="lead">HR Dev: Pending Data...</p>
-	<p id="batt" class="lead">Batt: Pending Data...</p>
-	<p id="sampleCount" class="lead">Sample Count: Pending Data...</p>
-	<!-- </br>
-	<button type="button" class="charcoal" onclick="app.playPrevious()">
-		< Play Previous
-	</button>
-	<button type="button" class="charcoal" onclick="app.playNext()">
-		Play Next >
-	</button> -->
-	<!--  style="width: 100%;"-->
+          <div class="mdl-progress mdl-js-progress"></div>
 
-	<!-- <h2>Instructions</h2>
-	<p>Make sure that the board OFF, insert the SD card, and ensure the SD switch is turned on. Switch on the device. The red LED indicates power. After logging starts, there is no need to stop, just turn off the device. The above display will show real-time CO2 readings while the phone is connected, but the phone DOES NOT need to remain connected for looging conntinue. TIME IS GMT, CO2 is PPM</p> -->
+          <!-- <div class="app-info">This app works in Evothings Viewer 1.5 or later.</div> -->
 
-	<!-- TODO: Image is missing.
-	<p><img src="RFduino_Image.png" style="max-height:30%;" /></p>
-	-->
+          <!-- Found devices are inserted into this div -->
+          <!-- <div class="app-cards"></div> -->
+          <!-- List with avatar and controls -->
+          <style>
+            .demo-list-control {
+              width: 300px;
+            }
 
-	<!-- JavaScript code for the app -->
-	<script>
-		window.onbeforeunload = function(e) {
-			rfduinoble.close();
-			// var dialogText = 'Dialog text here';
-			// e.returnValue = dialogText;
-			// return dialogText;
-		};
-		//google.load("visualization", "1", {packages:["line"]})
-		google.charts.load('current', {
-			'packages': ['corechart']
-		});
+            .demo-list-radio {
+              display: inline;
+            }
+          </style>
 
-		var rfduinoble = evothings.rfduinoble;
+          <ul class="demo-list-control mdl-list device-list">
 
-		// Application object.
-		var app = {};
-		app.knownDevices = {};
-		var R = 0;
-		var G = 0;
-		var B = 0;
-		var sampleCount = 0;
-		var dataArray = [
-			//['Time', 'Steps', 'HR Median', 'HR Dev']
-			['Time', 'HR Median', 'HR Dev']
-		];
-		var configFile;
-		var logFile;
-		var historyObject = {};
-		var logTimout;
-		var clearFiles = false;
-		// Connected device.
-		app.device = null;
-		app.fail = function(e) {
-			console.log("FileSystem Error");
-			console.dir(e);
-		}
-		app.checkFile = function() {
-			// window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(dir) {
-			// 	console.log("got main dir", dir);
-			// 	dir.getFile("log.txt", {
-			// 		create: true
-			// 	}, function(file) {
-			// 		console.log("got the file", file);
-			// 		logOb = file;
-			// 		app.writeLog("App started");
-			// 	});
-			// });
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
+          </ul>
+          <!-- Your content goes here -->
+          <u> Debug Info: </u>
+          <div class="debug_text">
+            <p id="log" class="lead">Pending Logs...</p>
+            <p id="log2" class="lead">Pending Logs...</p>
+            <p id="time" class="lead">Time: Pending Data...</p>
+            <p id="hr" class="lead">HR: Pending Data...</p>
+            <p id="hrdev" class="lead">HR Dev: Pending Data...</p>
+            <p id="batt" class="lead">Batt: Pending Data...</p>
+            <p id="sampleCount" class="lead">Sample Count: Pending Data...</p>
+          </div>
+        </div>
+      </section>
+      <section class="mdl-layout__tab-panel is-active" id="fixed-tab-2">
+        <div class="page-content">
+          <div style="width:100%; background-color: lightblue;">
+            <!-- <p id="steps" class="lead">Total Steps: Pending Data...</p> -->
+            <!-- <div id="chart_div" style="width: 100%; height: 320px;"></div> -->
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--1-col toggles">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                <input type="checkbox" id="switch-1" class="mdl-switch__input" checked />
+                </label>
+                <label for="switch-1"><span class="mdl-switch__label test1">HR</span></label>
+              </div>
+                <div class="mdl-cell mdl-cell--1-col toggles">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
+                <input type="checkbox" id="switch-2" class="mdl-switch__input" checked />
+                </label>
+                <label for="switch-2"><span class="mdl-switch__label test1">HR Dev</span></label>
+              </div>
+                <div class="mdl-cell mdl-cell--1-col toggles">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-3">
+                <input type="checkbox" id="switch-3" class="mdl-switch__input" checked />
+                </label>
+                <label for="switch-3"><span class="mdl-switch__label test1">AUX1</span></label>
+              </div>
+                <div class="mdl-cell mdl-cell--1-col toggles">
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-4">
+                <input type="checkbox" id="switch-4" class="mdl-switch__input" checked />
+                </label>
+                <label for="switch-4"><span class="mdl-switch__label test1">AUX2</span></label>
+              </div>
+              <div class="mdl-cell mdl-cell--1-col toggles">
+              <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-5">
+              <input type="checkbox" id="switch-5" class="mdl-switch__input" checked />
+              </label>
+              <label for="switch-5"><span class="mdl-switch__label test1">AUX3</span></label>
+            </div>
+            </div>
 
-				console.log('file system open: ' + fs.name);
-				fs.root.getFile("config.json", {
-					create: true,
-					exclusive: false
-				}, function(fileEntry) {
-					console.log("configfile is file?" + fileEntry.isFile.toString());
-					// fileEntry.name == 'someFile.txt'
-					// fileEntry.fullPath == '/someFile.txt'
-					if (clearFiles) {
-						app.writeFile(fileEntry, "{}");
-					}
-					configFile = fileEntry;
-					//app.writeFile(fileEntry, null);
-				}, app.fail);
-				fs.root.getFile("data.json", {
-					create: true,
-					exclusive: false
-				}, function(fileEntry) {
-					console.log("logFile is file?" + fileEntry.isFile.toString());
-					// fileEntry.name == 'someFile.txt'
-					// fileEntry.fullPath == '/someFile.txt'
-					logFile = fileEntry;
-					if (clearFiles) {
-						app.writeFile(fileEntry, "{}");
-					}
-					app.loadHistory(fileEntry, historyObject);
-					//app.writeFile(fileEntry, null);
-				}, app.fail);
-			}, app.fail);
-		}
-		app.onErrorCreateFile = function() {
-			console.log("Error creating file")
-		}
-		app.onErrorLoadFs = function() {
-			console.log("Error loading FS");
-		}
-		app.writeFile = function(fileEntry, inputString, append) {
-			// Create a FileWriter object for our FileEntry (log.txt).
-			fileEntry.createWriter(function(fileWriter) {
+            <div id="dashboard">
+              <div id="chart_div" style="width: 100%; height: 320px;"></div>
+              <div id="control_div" style="width: 100%; height: 80px;"></div>
+              <div id="filter_mobile"></div>
+              <p><span id='dbgchart'></span></p>
+            </div>
+          </div>
+          <!-- style="width: 100%; height: 220px;" -->
+          <!-- Raised button with ripple -->
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect generate-samples">
+            Generate Samples
+          </button>
+          <!-- Your content goes here -->
+        </div>
+      </section>
+      <!-- <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+        <div class="page-content">
+        </div>
+      </section> -->
 
-				fileWriter.onwriteend = function() {
-					console.log("Successful file write...");
-					app.readFile(fileEntry);
-				};
+    </main>
 
-				fileWriter.onerror = function(e) {
-					console.log("Failed file write: " + e.toString());
-				};
+    <!-- Toast element used for messages -->
+    <div class="mdl-snackbar mdl-js-snackbar">
+      <div class="mdl-snackbar__text"></div>
+      <button class="mdl-snackbar__action" type="button"></button>
+    </div>
 
-				// If data object is not passed in,
-				// create a new Blob instead.
-				// var dataStr = "{}"
-				// if (inputString!==null) {
-				// 	dataObj = new Blob([dataStr], {
-				// 		type: 'text/plain'
-				// 	});
-				// } else {
-				// 	dataObj = new Blob([inputString], {
-				// 		type: 'text/plain'
-				// 	});
-				// }
-				dataObj = new Blob([inputString], {
-					type: 'text/plain'
-				});
-				if (append) {
-					try {
-						fileWriter.seek(fileWriter.length);
-					} catch (e) {
-						console.log("file doesn't exist!");
-					}
-				}
-				fileWriter.write(dataObj);
-			});
-		}
-		app.readFile = function(fileEntry, outgoingObject) {
-			console.log("Start file read");
-			fileEntry.file(function(file) {
-				var reader = new FileReader();
+  </div>
 
-				reader.onloadend = function() {
-					var readObj = JSON.parse(this.result);
-					console.log("Successful file read: " + JSON.stringify(readObj));
-					outgoingObject = readObj;
-					//displayFileData(fileEntry.fullPath + ": " + this.result);
-				};
-
-				reader.readAsText(file);
-
-			}, app.fail);
-		}
-		app.loadHistory = function(fileEntry, outgoingObject) {
-			console.log("Start file read");
-			fileEntry.file(function(file) {
-				var reader = new FileReader();
-
-				reader.onloadend = function() {
-					var readObj = JSON.parse(this.result);
-					console.log("Successful file read: " + JSON.stringify(readObj));
-					outgoingObject = readObj;
-					for (var key in readObj) {
-						if (!readObj.hasOwnProperty(key)) continue;
-
-						var obj = readObj[key];
-						var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-						d.setUTCSeconds(obj.epoch);
-						dataArray.push([d, obj.hr, obj.hrDev])
-					}
-					$.each(readObj, function() {
-						//alert(this.id + " " + this.type);
-						// var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-						// d.setUTCSeconds(this.epoch);
-						// dataArray.push([d, this.hr, this.hrDev])
-					});
-					// if(Object.keys(readObj).length >= 0 && readObj.constructor === Object){
-					// 	Object.keys(readObj).forEach(function(k){
-					// 		var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-					// 		d.setUTCSeconds(k.epoch);
-					// 		dataArray.push([d, k.hr, k.hrDev])
-					// 	}
-					// }
-					console.log("Should draw chart");
-					app.drawChart(dataArray);
-					//displayFileData(fileEntry.fullPath + ": " + this.result);
-				};
-
-				reader.readAsText(file);
-
-			}, app.fail);
-		}
-		app.writeLog = function(str) {
-			if (!logOb) return;
-			var log = str + " [" + (new Date()) + "]\n";
-			console.log("going to log " + log);
-			logOb.createWriter(function(fileWriter) {
-
-				fileWriter.seek(fileWriter.length);
-
-				var blob = new Blob([log], {
-					type: 'text/plain'
-				});
-				fileWriter.write(blob);
-				console.log("ok, in theory i worked");
-				app.readAsText(logOb);
-			}, app.fail);
-		}
-		app.scanStop = function() {
-			console.log("stop scan");
-			app.showMessage("Not Scanning");
-			rfduinoble.stopScan();
-		}
-		app.scanStart = function() {
-			console.log("scanning");
-			app.showMessage("Scanning...");
-			app.knownDevices = {};
-			$("#deviceList").empty();
-			rfduinoble.scan("OpenHAK",
-				function(r) {
-					if (app.knownDevices[r.address]) {
-						return;
-					}
-					app.knownDevices[r.address] = r.address;
-					//var res = r.rssi + " " + r.name + " " + r.kCBAdvDataLocalName;
-					var res = r.rssi + " " + r.advertisementData.kCBAdvDataLocalName; //kCBAdvDataLocalName
-					console.log('scan result: ' + JSON.stringify(r));
-					var p = document.getElementById('deviceList');
-					var li = document.createElement('li');
-					var $a = $("<a class='device' href=\"#connected\">" + res + "</a>");
-					$(li).append($a);
-					$a.bind("click", {
-							address: r.address,
-							name: r.name,
-							device: r
-						},
-						app.eventDeviceClicked);
-					p.appendChild(li);
-					//$("#deviceList").listview("refresh");
-					console.log('found device: ' + r.name);
-				})
-		}
-		app.sendTimeSync = function() {
-			var d = new Date();
-			var utc = Math.floor((new Date()).getTime() / 1000)
-			console.log(utc);
-
-			function toBytesInt32(num) {
-				arr = new Uint8Array([
-					(num & 0xff000000) >> 24,
-					(num & 0x00ff0000) >> 16,
-					(num & 0x0000ff00) >> 8,
-					(num & 0x000000ff)
-				]);
-				return arr;
-			}
-			var output = toBytesInt32(utc);
-			// var utcBytes = bytesFromHex(utc.toString(),4);
-			// console.log(utcBytes);
-			//
-			for (var i = 0; i < output.length; i++) {
-				//output[i]=utcBytes[i]
-				console.log(output[i])
-			}
-			//clearTimeout(offTimer);
-			//console.log(output.toString());
-			//var output = new Uint8Array(bytesFromHex(utc.toString(),6));
-			app.device && app.device.writeDataArray(new Uint8Array([10, output[0], output[1], output[2], output[3]]));
-			// offTimer = setTimeout(function(){
-			// 	app.device && app.device.writeDataArray(new Uint8Array([R, G, B, 0x02, 0x05]));
-			// },1500)
-			// var myInt = data[3];
-			// for(var i = data.length()-1; i > 0;i--){
-			// 	myInt = myInt >> 8;
-			// 	myInt = myInt & data[]
-			// }
-		};
-		app.getHistory = function() {
-			sampleCount = 0;
-			// dataArray = [
-			// 	//['Time', 'Steps', 'HR Median', 'HR Dev']
-			// 	['Time', 'HR Median', 'HR Dev']
-			// ];
-			app.device && app.device.writeDataArray(new Uint8Array([3]));
-
-		}
-		app.drawChartBlank = function(data) {
-			var d = new Date(0);
-			app.drawChart([d, 0, 0, 0]);
-		}
-		app.drawChart = function(data) {
-			var data = google.visualization.arrayToDataTable(data);
-
-			var options = {
-				title: 'Your Awesome Data',
-				curveType: 'function',
-				chartArea: {
-					'width': '85%'
-				},
-				legend: {
-					position: 'bottom'
-				}
-			};
-
-			var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
-			chart.draw(data, options);
-		}
-		app.rfdHandler = function(rfdData) {
-			clearTimeout(logTimout);
-			sampleCount++;
-			var myDataArray = new Uint8Array(rfdData);
-			// Probably should do some maximum length tests for production someday.
-			var myString = "Received Length: ";
-			myString = myString + myDataArray.byteLength + " Bytes";
-			app.logMessage(myString);
-
-			myString = "HEX: ";
-			for (i = 0; i < myDataArray.byteLength; i++) {
-				myString = myString + " " + myDataArray[i].toString(16);
-			}
-			app.logMessage2(myString);
-			//myString = "EPOCH: ";
-			var epoch = evothings.util.bigEndianToUint32(myDataArray, 0)
-			var steps = evothings.util.bigEndianToUint16(myDataArray, 4)
-			var hr = evothings.util.littleEndianToUint8(myDataArray, 6);
-			var hrDev = evothings.util.littleEndianToUint8(myDataArray, 7);
-			var bat = evothings.util.littleEndianToUint8(myDataArray, 8);
-			var aux1 = evothings.util.littleEndianToUint8(myDataArray, 9);
-			var aux2 = evothings.util.littleEndianToUint8(myDataArray, 10);
-			var aux3 = evothings.util.littleEndianToUint8(myDataArray, 11);
-			var sampleObj = {
-				"epoch": epoch,
-				"steps": steps,
-				"hr": hr,
-				"hrDev": hrDev,
-				"batt": bat,
-				"aux1": aux1,
-				"aux2": aux2,
-				"aux3": aux3
-			}
-			if (!historyObject.hasOwnProperty(epoch)) {
-				historyObject[epoch] = sampleObj;
-				var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-				d.setUTCSeconds(epoch);
-				dataArray.push([d, hr, hrDev])
-				app.drawChart(dataArray);
-				console.log("sample time: " + epoch + " Steps: " + steps + " hr: " + hr + " hr dev: " + hrDev + " batt: " + (bat * 0.0165).toFixed(3) + " sample count: " + sampleCount);
-				myString = "Time: " + app.timeConverter(epoch) + " Steps: " + steps + " HR Median: " + hr + " HR Dev: " + hrDev;
-			}
-			//new Date(Milliseconds)
-
-			// Create a new JavaScript Date object based on the timestamp
-			// multiplied by 1000 so that the argument is in milliseconds, not seconds.
-
-			// for (i = 0; i < myDataArray.byteLength; i++) {
-			// 	myString = myString + " " + String.fromCharCode(myDataArray[i]);
-			// }
-
-			//myString = myString + myDataArray[0];
-			app.logReading("Time: " + app.timeConverter(epoch), "Total Steps: " + steps, "HR Median: " + hr, "HR Dev: " + hrDev, "Batt: " + (bat * 0.0165).toFixed(3));
-			logTimout = setTimeout(function() {
-				console.log(JSON.stringify(historyObject));
-				app.writeFile(logFile, JSON.stringify(historyObject));
-			}, 1000);
-		}
-		app.eventDeviceClicked = function(event) {
-			app.showMessage("Connecting...");
-			// rfduinoble.connect(event.data.device);
-			rfduinoble.connect(event.data.device,
-				function(result) {
-					app.showMessage("Connected to " + event.data.device.advertisementData.kCBAdvDataLocalName);
-					app.device = event.data.device;
-					setTimeout(function() {
-						app.sendTimeSync();
-					}, 500);
-					setTimeout(function() {
-						app.getHistory();
-					}, 750);
-					app.device && app.device.readData(function(data) {
-						//console.log(data.length);
-						app.rfdHandler(data);
-						//var epoch = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
-						//var epoch = new Uint32Array(data)[0];
-						//console.log(uint);
-						//app.logMessage('Data: ' + epoch);
-					});
-					app.device && app.device.subscribe(function(data) {
-						//console.log(data.length);
-						app.rfdHandler(data);
-						//var epoch = (data[0] << 24) | (data[1] << 16) | (data[2] << 8) | data[3];
-						//var epoch = new Uint32Array(data)[0];
-						//console.log(uint);
-						//app.logMessage('Data: ' + epoch);
-					});
-				},
-				function(errorCode) {
-					app.showMessage("Connect error: " + errorCode);
-				});
-		};
-
-		app.showMessage = function(info) {
-			document.getElementById("info").innerHTML = info;
-		};
-		app.logMessage = function(log) {
-			document.getElementById("log").innerHTML = log;
-		};
-		app.logMessage2 = function(log) {
-			document.getElementById("log2").innerHTML = log;
-		};
-		app.logReading = function(time, steps, hr, hrdev, batt) {
-			document.getElementById("time").innerHTML = time;
-			document.getElementById("steps").innerHTML = steps;
-			document.getElementById("hr").innerHTML = hr;
-			document.getElementById("hrdev").innerHTML = hrdev;
-			document.getElementById("batt").innerHTML = batt;
-			document.getElementById("sampleCount").innerHTML = "Sample count: " + sampleCount;
-		};
-
-		// Called when BLE and other native functions are available.
-		app.onDeviceReady = function() {
-			app.showMessage('Press "Scan" to find OpenHAKs');
-		};
-
-		app.disconnect = function() {
-			console.log("close");
-			rfduinoble.close();
-			console.log("disconnect");
-			app.showMessage("Disconnected");
-		}
-		app.connect = function() {
-			console.log("close");
-			rfduinoble.close();
-
-			// Wait 500 ms for close to complete before connecting.
-			setTimeout(function() {
-					console.log("connecting");
-					app.showMessage("Connecting...");
-					rfduinoble.connect(
-						"openhak",
-						function(device) {
-							console.log("connected");
-							app.showMessage("Connected");
-							app.device = device;
-							app.device && app.device.subscribe(function(data) {
-								//console.log(data.length);
-								var uint = new Uint32Array(data)[0];
-								console.log(uint);
-								app.showMessage('Logging: CO2 ' + uint + "0 ppm");
-							});
-						},
-						function(errorCode) {
-							app.showMessage("Connect error: " + errorCode);
-						});
-				},
-				500);
-		};
-		app.timeConverter = function(UNIX_timestamp) {
-			var a = new Date(UNIX_timestamp * 1000);
-			var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-			var year = a.getFullYear();
-			var month = months[a.getMonth()];
-			var date = a.getDate();
-			var hour = a.getHours();
-			//var min = a.getMinutes();
-			//var sec = a.getSeconds();
-			var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes();
-			var sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
-			var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
-			return time;
-		}
-
-		// When the app is fully loaded the "deviceready" event is triggered.
-		document.addEventListener(
-			'deviceready',
-			function() {
-				evothings.scriptsLoaded(app.onDeviceReady)
-				app.checkFile();
-			},
-			false);
-	</script>
+  <script src="cordova.js"></script>
+  <script src="libs/jquery/jquery-3.1.1.min.js"></script>
+  <script src="libs/fastclick/fastclick.js"></script>
+  <script src="libs/mdl/material.js"></script>
+  <script src="libs/evothings/evothings.js"></script>
+  <script src="libs/evothings/rfduinoble/rfduinoble.js"></script>
+  <script src="//www.parsecdn.com/js/parse-1.4.0.min.js"></script>
+  <script src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+  <script src="libs/jQRangeSlider-5.7.2/lib/jquery.mousewheel.min.js"></script>
+  <script type="text/javascript" src="libs/jQRangeSlider-5.7.2/jQAllRangeSliders-min.js"></script>
+  <script src="datagen.js"></script>
+  <script src="app.js"></script>
 </body>
 
 </html>
-
-<!-- {
-	"name": "cordova-plugin-file"
-}, -->

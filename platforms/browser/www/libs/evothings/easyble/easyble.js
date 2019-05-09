@@ -176,7 +176,7 @@
 		{
 			// Ensure we have advertisementData.
 			internal.ensureAdvertisementData(device);
-			console.log("Easy: "+JSON.stringify(device))
+			//console.log("Easy: "+JSON.stringify(device))
 			// Check if the device matches the filter, if we have a filter.
 			if(!internal.deviceMatchesServiceFilter(device)) {
 				return;
