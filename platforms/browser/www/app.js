@@ -558,9 +558,9 @@ var rfduinoble = evothings.rfduinoble;;
       'packages': ['corechart', 'controls', 'charteditor']
     });
     //google.setOnLoadCallback(drawChart);
-    google.setOnLoadCallback(function() {
-      genSampleData(generateSamples)
-    });
+    // google.setOnLoadCallback(function() {
+    //   genSampleData(generateSamples)
+    // });
   }
 
   function onDeviceReady() {
@@ -643,6 +643,7 @@ var rfduinoble = evothings.rfduinoble;;
   }
 
   function generateSamples(data) {
+    app.drawChartBlank();
     console.log("calling back in generateSamples");
     //var sampleObj = genSampleData();
     var lastDay = -1;

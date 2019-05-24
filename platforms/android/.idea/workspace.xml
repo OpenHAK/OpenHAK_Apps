@@ -5,90 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da5d0377-a7ee-488a-993a-583b23dd787e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CordovaLib/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/CordovaLib/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android.json" beforeDir="false" afterPath="$PROJECT_DIR$/android.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/evothings.json" beforeDir="false" afterPath="$PROJECT_DIR$/../browser/www/evothings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../browser/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/evothings/easyble/easyble.js" beforeDir="false" afterPath="$PROJECT_DIR$/../browser/www/libs/evothings/easyble/easyble.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/app-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/css/framework7.ios.colors.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/css/framework7.ios.colors.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/css/framework7.ios.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/css/framework7.ios.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/css/framework7.ios.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/css/framework7.ios.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/css/framework7.material.colors.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/css/framework7.material.colors.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/css/framework7.material.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/css/framework7.material.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/css/framework7.material.rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/css/framework7.material.rtl.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/css/my-app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/evothings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-f7-ios.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-f7-material.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-calendar-ios.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-calendar-material.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-comment-ios.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-comment-material.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-email-ios.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-email-material.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-gender-ios.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-gender-material.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-name-ios.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-name-material.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-password-ios.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-password-material.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-settings-ios.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-settings-material.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-tel-ios.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-tel-material.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-toggle-ios.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-toggle-material.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-url-ios.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/img/i-form-url-material.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/install.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/js/framework7.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/js/framework7.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/js/framework7.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/js/framework7.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/js/my-app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/framework7/uninstall.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/jquery/VERSION" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/jquery/app-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/jquery/evothings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/jquery/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/libs/jquery/version.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/res/icon-512x512.png" beforeDir="false" afterPath="$PROJECT_DIR$/../browser/www/res/icon-512x512.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/res/screenshot1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../browser/www/res/screenshot1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/res/screenshot2.png" beforeDir="false" afterPath="$PROJECT_DIR$/../browser/www/res/screenshot2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/css/evothings-app.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/css/test.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/fonts/ProximaNova-Black-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/fonts/ProximaNova-Black-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/fonts/ProximaNova-Black-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/fonts/ProximaNova-Black-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/fonts/ProximaNova-Bold-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/fonts/ProximaNova-Bold-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/fonts/ProximaNova-Bold-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/fonts/ProximaNova-Bold-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/fonts/ProximaNova-Reg-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/fonts/ProximaNova-Reg-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/fonts/ProximaNova-Reg-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/fonts/ProximaNova-Reg-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/fonts/ProximaNova.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/images/arrow-left.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/images/arrow-right.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/images/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/images/menu.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/ui/images/ohak_icon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../www/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../www/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../browser/www/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../browser/www/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../www/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../www/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../www/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -122,30 +45,42 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="811">
+            <state relative-caret-position="2655">
               <caret line="177" column="54" selection-start-line="177" selection-start-column="54" selection-end-line="177" selection-end-column="54" />
               <folding>
                 <element signature="e#3752#3800#0" expanded="true" />
-                <element signature="e#5996#6031#0" expanded="true" />
-                <element signature="e#6075#6109#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/www/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
-              <caret line="688" column="17" selection-start-line="688" selection-start-column="8" selection-end-line="688" selection-end-column="17" />
+            <state relative-caret-position="9885">
+              <caret line="659" column="48" selection-start-line="659" selection-start-column="48" selection-end-line="659" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3766">
+              <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/www/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="911">
+            <state relative-caret-position="1230">
               <caret line="82" column="1" selection-start-line="82" selection-start-column="1" selection-end-line="82" selection-end-column="1" />
             </state>
           </provider>
@@ -162,13 +97,14 @@
         <option value="$PROJECT_DIR$/assets/www/app.css" />
         <option value="$PROJECT_DIR$/assets/www/index.html" />
         <option value="$PROJECT_DIR$/assets/www/app.js" />
+        <option value="$PROJECT_DIR$/build.gradle" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1677" />
+    <option name="x" value="-1680" />
     <option name="y" value="23" />
-    <option name="width" value="1667" />
+    <option name="width" value="1680" />
     <option name="height" value="1027" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -182,38 +118,15 @@
           <expand>
             <path>
               <item name="android" type="1abcf292:AndroidViewProjectNode" />
-              <item name="android" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="android" type="1abcf292:AndroidViewProjectNode" />
-              <item name="android" type="feadf853:AndroidModuleNode" />
-              <item name="assets" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="android" type="1abcf292:AndroidViewProjectNode" />
-              <item name="android" type="feadf853:AndroidModuleNode" />
-              <item name="assets" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="www" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="android" type="1abcf292:AndroidViewProjectNode" />
-              <item name="android" type="feadf853:AndroidModuleNode" />
-              <item name="assets" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="www" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="libs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="android" type="1abcf292:AndroidViewProjectNode" />
-              <item name="android" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
+              <item name="android" type="e9137016:NonAndroidModuleNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -221,7 +134,7 @@
     <property name="device.picker.selection" value="PM1LHMA830703165" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build.tools" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="sync.plugin.last.upgrade.timestamp" value="1557356833446" />
   </component>
   <component name="RunDashboard">
@@ -315,7 +228,7 @@
     <frame x="-1680" y="23" width="1680" height="1027" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.35409036" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.35409036" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -324,14 +237,16 @@
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Run" order="0" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" visible="true" weight="0.797861" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.797861" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="6" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.32861954" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" />
+      <window_info anchor="bottom" id="Build" order="7" visible="true" weight="0.32834226" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="9" weight="0.32941177" />
+      <window_info anchor="right" id="Assistant" weight="0.32967034" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
@@ -349,27 +264,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="811">
+        <state relative-caret-position="2655">
           <caret line="177" column="54" selection-start-line="177" selection-start-column="54" selection-end-line="177" selection-end-column="54" />
           <folding>
             <element signature="e#3752#3800#0" expanded="true" />
-            <element signature="e#5996#6031#0" expanded="true" />
-            <element signature="e#6075#6109#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/www/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="911">
-          <caret line="82" column="1" selection-start-line="82" selection-start-column="1" selection-end-line="82" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/www/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="688" column="17" selection-start-line="688" selection-start-column="8" selection-end-line="688" selection-end-column="17" />
+        <state relative-caret-position="9885">
+          <caret line="659" column="48" selection-start-line="659" selection-start-column="48" selection-end-line="659" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/www/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1230">
+          <caret line="82" column="1" selection-start-line="82" selection-start-column="1" selection-end-line="82" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3766">
+          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
         </state>
       </provider>
     </entry>
