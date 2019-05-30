@@ -196,12 +196,12 @@ var rfduinoble = evothings.rfduinoble;;
   }
   app.scanStop = function() {
     console.log("stop scan");
-    app.showMessage("Not Scanning");
+    showMessage("Not Scanning");
     rfduinoble.stopScan();
   }
   app.scanStart = function() {
     console.log("scanning");
-    app.showMessage("Scanning...");
+    showMessage("Scanning...");
     app.knownDevices = {};
     $("#deviceList").empty();
     rfduinoble.scan("OpenHAK",
@@ -274,7 +274,8 @@ var rfduinoble = evothings.rfduinoble;;
   }
   app.drawChartBlank = function(data) {
     var d = new Date(0);
-    app.drawChart([d, 0, 0, 0]);
+    dataArray.push([d, 0, 0, 0,0,0,0]);
+    app.drawChart(dataArray);
   }
 
   app.drawChart = function(data) {
@@ -395,45 +396,53 @@ var rfduinoble = evothings.rfduinoble;;
     var aux3 = evothings.util.littleEndianToUint8(myDataArray, 11);
     var sampleObj = {
       "epoch": epoch,
-      "steps": steps,
-      "hr": hr,
-      "hrDev": hrDev,
-      "batt": bat,
-      "aux1": aux1,
-      "aux2": aux2,
-      "aux3": aux3
+      "steps": Number(steps),
+      "hr": Number(hr),
+      "hrDev": Number(hrDev),
+      "batt": Number(bat),
+      "aux1": Number(aux1) || 0,
+      "aux2": Number(aux2) || 0,
+      "aux3": Number(aux3) || 0
     }
-    if (!historyObject.hasOwnProperty(epoch)) {
-      historyObject[epoch] = sampleObj;
-      var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-      d.setUTCSeconds(epoch);
-      dataArray.push([d, hr, hrDev])
-      app.drawChart(dataArray);
-      console.log("sample time: " + epoch + " Steps: " + steps + " hr: " + hr + " hr dev: " + hrDev + " batt: " + (bat * 0.0165).toFixed(3) + " sample count: " + sampleCount);
-      myString = "Time: " + app.timeConverter(epoch) + " Steps: " + steps + " HR Median: " + hr + " HR Dev: " + hrDev;
+    if (!isNaN(epoch)) {
+      if (!historyObject.hasOwnProperty(epoch)) {
+        historyObject[epoch] = sampleObj;
+        var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+        d.setUTCSeconds(epoch);
+        //dataArray.push([d, hr, hrDev])
+        dataArray.push([d, sampleObj.hr, sampleObj.hrDev, sampleObj.steps, sampleObj.aux1, sampleObj.aux2, sampleObj.aux3])
+        dataArray.sort(sortFunction);
+        if(dataArray.length>3){
+          app.drawChart(dataArray);
+        }
+        console.log("sample time: " + epoch + " Steps: " + steps + " hr: " + hr + " hr dev: " + hrDev + " batt: " + (bat * 0.0165).toFixed(3) + " sample count: " + sampleCount);
+        myString = "Time: " + app.timeConverter(epoch) + " Steps: " + steps + " HR Median: " + hr + " HR Dev: " + hrDev;
+      }
+      //new Date(Milliseconds)
+
+      // Create a new JavaScript Date object based on the timestamp
+      // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+
+      // for (i = 0; i < myDataArray.byteLength; i++) {
+      // 	myString = myString + " " + String.fromCharCode(myDataArray[i]);
+      // }
+
+      //myString = myString + myDataArray[0];
+      app.logReading("Time: " + app.timeConverter(epoch), "Total Steps: " + steps, "HR Median: " + hr, "HR Dev: " + hrDev, "Batt: " + (bat * 0.0165).toFixed(3));
+      logTimout = setTimeout(function() {
+        console.log(JSON.stringify(historyObject));
+        app.writeFile(logFile, JSON.stringify(historyObject));
+      }, 1000);
     }
-    //new Date(Milliseconds)
-
-    // Create a new JavaScript Date object based on the timestamp
-    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
-
-    // for (i = 0; i < myDataArray.byteLength; i++) {
-    // 	myString = myString + " " + String.fromCharCode(myDataArray[i]);
-    // }
-
-    //myString = myString + myDataArray[0];
-    app.logReading("Time: " + app.timeConverter(epoch), "Total Steps: " + steps, "HR Median: " + hr, "HR Dev: " + hrDev, "Batt: " + (bat * 0.0165).toFixed(3));
-    logTimout = setTimeout(function() {
-      console.log(JSON.stringify(historyObject));
-      app.writeFile(logFile, JSON.stringify(historyObject));
-    }, 1000);
   }
   app.eventDeviceClicked = function(event) {
-    app.showMessage("Connecting...");
+    console.log("should be connecting");
+    showMessage("Connecting...");
+    //app.drawChartBlank();
     // rfduinoble.connect(event.data.device);
     rfduinoble.connect(event.data.device,
       function(result) {
-        app.showMessage("Connected to " + event.data.device.advertisementData.kCBAdvDataLocalName);
+        showMessage("Connected to " + event.data.device.advertisementData.kCBAdvDataLocalName);
         app.device = event.data.device;
         setTimeout(function() {
           app.sendTimeSync();
@@ -459,13 +468,13 @@ var rfduinoble = evothings.rfduinoble;;
         });
       },
       function(errorCode) {
-        app.showMessage("Connect error: " + errorCode);
+        showMessage("Connect error: " + errorCode);
       });
   };
 
-  app.showMessage = function(info) {
-    document.getElementById("info").innerHTML = info;
-  };
+  // showMessage = function(info) {
+  //   document.getElementById("info").innerHTML = info;
+  // };
   app.logMessage = function(log) {
     document.getElementById("log").innerHTML = log;
   };
@@ -483,14 +492,14 @@ var rfduinoble = evothings.rfduinoble;;
 
   // Called when BLE and other native functions are available.
   app.onDeviceReady = function() {
-    app.showMessage('Press "Scan" to find OpenHAKs');
+    showMessage('Press "Scan" to find OpenHAKs');
   };
 
   app.disconnect = function() {
     console.log("close");
     rfduinoble.close();
     console.log("disconnect");
-    app.showMessage("Disconnected");
+    showMessage("Disconnected");
   }
   app.connect = function() {
     console.log("close");
@@ -499,22 +508,22 @@ var rfduinoble = evothings.rfduinoble;;
     // Wait 500 ms for close to complete before connecting.
     setTimeout(function() {
         console.log("connecting");
-        app.showMessage("Connecting...");
+        showMessage("Connecting...");
         rfduinoble.connect(
           "openhak",
           function(device) {
             console.log("connected");
-            app.showMessage("Connected");
+            showMessage("Connected");
             app.device = device;
             app.device && app.device.subscribe(function(data) {
               //console.log(data.length);
               var uint = new Uint32Array(data)[0];
               console.log(uint);
-              app.showMessage('Logging: CO2 ' + uint + "0 ppm");
+              showMessage('Logging: CO2 ' + uint + "0 ppm");
             });
           },
           function(errorCode) {
-            app.showMessage("Connect error: " + errorCode);
+            showMessage("Connect error: " + errorCode);
           });
       },
       500);
@@ -575,64 +584,59 @@ var rfduinoble = evothings.rfduinoble;;
     // Attach event listeners.
     //['Time', 'HR Median', 'HR Dev', 'Steps', 'Aux1', 'Aux2', 'Aux3']
     $("#switch-1").click(function() {
-        if($('#switch-1').is('.is-checked')) {
-            view.showColumns([1]);
-            dash.draw(view);
+      if ($('#switch-1').is('.is-checked')) {
+        view.showColumns([1]);
+        dash.draw(view);
+      } else {
+        if (view.getViewColumns().length > 3) {
+          view.hideColumns([1]);
+          dash.draw(view);
         }
-        else {
-          if(view.getViewColumns().length>3){
-            view.hideColumns([1]);
-            dash.draw(view);
-          }
-        }
+      }
     });
     $("#switch-2").click(function() {
-        if($('#switch-2').is('.is-checked')) {
-            view.setColumns([2]);
-            dash.draw(view);
+      if ($('#switch-2').is('.is-checked')) {
+        view.setColumns([2]);
+        dash.draw(view);
+      } else {
+        if (view.getViewColumns().length > 3) {
+          view.hideColumns([2]);
+          dash.draw(view);
         }
-        else {
-          if(view.getViewColumns().length>3){
-            view.hideColumns([2]);
-            dash.draw(view);
-          }
-        }
+      }
     });
     $("#switch-3").click(function() {
-        if($('#switch-3').is('.is-checked')) {
-            view.setColumns([4]);
-            dash.draw(view);
+      if ($('#switch-3').is('.is-checked')) {
+        view.setColumns([4]);
+        dash.draw(view);
+      } else {
+        if (view.getViewColumns().length > 3) {
+          view.hideColumns([4]);
+          dash.draw(view);
         }
-        else {
-          if(view.getViewColumns().length>3){
-            view.hideColumns([4]);
-            dash.draw(view);
-          }
-        }
+      }
     });
     $("#switch-4").click(function() {
-        if($('#switch-4').is('.is-checked')) {
-            view.setColumns([5]);
-            dash.draw(view);
+      if ($('#switch-4').is('.is-checked')) {
+        view.setColumns([5]);
+        dash.draw(view);
+      } else {
+        if (view.getViewColumns().length > 3) {
+          view.hideColumns([5]);
+          dash.draw(view);
         }
-        else {
-          if(view.getViewColumns().length>3){
-            view.hideColumns([5]);
-            dash.draw(view);
-          }
-        }
+      }
     });
     $("#switch-5").click(function() {
-        if($('#switch-5').is('.is-checked')) {
-            view.setColumns([6]);
-            dash.draw(view);
+      if ($('#switch-5').is('.is-checked')) {
+        view.setColumns([6]);
+        dash.draw(view);
+      } else {
+        if (view.getViewColumns().length > 3) {
+          view.hideColumns([6]);
+          dash.draw(view);
         }
-        else {
-          if(view.getViewColumns().length>3){
-            view.hideColumns([6]);
-            dash.draw(view);
-          }
-        }
+      }
     });
     $('.app-start-scan').on('click', startScan)
     $('.app-stop-scan').on('click', stopScan)
@@ -666,7 +670,7 @@ var rfduinoble = evothings.rfduinoble;;
       //     "aux2": getAux(),
       //     "aux3": getAux()
       // }
-      dataArray.push([d, obj.hr, obj.hrDev, obj.steps, obj.aux1, obj.aux2, obj.aux2])
+      dataArray.push([d, obj.hr, obj.hrDev, obj.steps, obj.aux1, obj.aux2, obj.aux3])
 
       //console.log("sample time: " + obj.epoch + " Steps: " + obj.steps + " hr: " + obj.hr + " hr dev: " + obj.hrDev + " batt: " + (obj.batt * 0.0165).toFixed(3));
       //console.log(d.getDay());
@@ -681,7 +685,7 @@ var rfduinoble = evothings.rfduinoble;;
   }
   // app.scanStart = function() {
   //   console.log("scanning");
-  //   app.showMessage("Scanning...");
+  //   showMessage("Scanning...");
   //   app.knownDevices = {};
   //   $("#deviceList").empty();
   //   rfduinoble.scan("OpenHAK",
@@ -708,7 +712,14 @@ var rfduinoble = evothings.rfduinoble;;
   //       console.log('found device: ' + r.name);
   //     })
   // }
-
+  function sortFunction(a, b) {
+      if (a[0] === b[0]) {
+          return 0;
+      }
+      else {
+          return (a[0] < b[0]) ? -1 : 1;
+      }
+  }
   function startScan() {
     // Make sure scan is stopped.
     stopScan(false)
@@ -722,7 +733,7 @@ var rfduinoble = evothings.rfduinoble;;
         //app.knownDevices[r.address] = r.address;
         //var res = r.rssi + " " + r.name + " " + r.kCBAdvDataLocalName;
         var res = r.rssi + " " + r.advertisementData.kCBAdvDataLocalName; //kCBAdvDataLocalName
-        console.log('scan result: ' + JSON.stringify(r));
+        //console.log('scan result: ' + JSON.stringify(r));
         r.timeStamp = Date.now()
         devices[r.address] = r;
         // var p = document.getElementById('deviceList');
@@ -842,7 +853,7 @@ var rfduinoble = evothings.rfduinoble;;
 
   function deviceIsDisplayed(device) {
     var deviceId = '#' + getDeviceDomId(device)
-    console.log(deviceId);
+    //console.log(deviceId);
     return !!($(deviceId).length)
   }
 
@@ -890,30 +901,25 @@ var rfduinoble = evothings.rfduinoble;;
       '</span>' +
       '<span class="mdl-list__item-secondary-action">' +
       '<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">' +
-      '<input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" />' +
+      '<input type="checkbox" id="list-checkbox-' + domId + '" class="mdl-checkbox__input" />' +
+      //'<input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" />' +
       '</label>' +
       '</span>' +
-      '</li>')
-    $('.device-list').append(element)
-    // var domId = getDeviceDomId(device);
-    // var element = $(
-    //   '<div id="' + domId + '" class="mdl-card mdl-card--border mdl-shadow--2dp">'
-    //   +  '<div class="mdl-card__title">'
-    //   +    '<h2 class="mdl-card__title-text">Device: ' + device.name + '</h2>'
-    //   +  '</div>'
-    //   +  '<div class="mdl-card__supporting-text">'
-    //   +    'RSSI: <span class="device-rssi"></span><br>'
-    //   +    'kCBAdvDataLocalName: <span class="device-kCBAdvDataLocalName"></span><br>'
-    //   +    'kCBAdvDataServiceUUIDs: <span class="device-kCBAdvDataServiceUUIDs"></span><br>'
-    //   +    'kCBAdvDataServiceData: <span class="device-kCBAdvDataServiceData"></span><br>'
-    //   +    'kCBAdvDataTxPowerLevel: <span class="device-kCBAdvDataTxPowerLevel"></span><br>'
-    //   +    'kCBAdvDataIsConnectable: <span class="device-kCBAdvDataIsConnectable"></span><br>'
-    //   +     '<div class="device-distance-bar" style="width:0px;height:10px;margin-top:20px;background:rgb(200,200,0)"></div>'
-    //   +  '</div>'
-    //   + '</div>')
-    //
-    // // Add element.
-    // $('.app-cards').append(element)
+      '</li>');
+    $('.device-list').append(element);
+    $("#list-checkbox-" + domId).change({
+      address: device.address,
+      name: device.name,
+      device: device
+    }, function(event) {
+      //console.log("CHECKBOX CHANGE!");
+      //console.log($(this)[0].checked);
+      if ($(this)[0].checked) {
+        //console.log("trying to connect");
+        stopScan("Connecting...")
+        app.eventDeviceClicked(event);
+      }
+    });
   }
 
   function removeDevice(device) {
