@@ -35,7 +35,6 @@ function getWeekNumber(d) {
 // d.setUTCSeconds(epoch);
 
 function genSampleData(callback) {
-    console.log("calling genSampleData");
     var startUtc = Math.floor((new Date()).getTime() / 1000);
     var lastUtc;
     var historyObject = {};
