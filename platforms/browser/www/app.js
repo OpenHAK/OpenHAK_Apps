@@ -227,6 +227,7 @@ var rfduinoble = evothings.rfduinoble;;
 
           reader.onloadend = function() {
             var readObj = JSON.parse(this.result);
+            console.log("outgoingObject: " + JSON.stringify(outgoingObject));
             console.log("Successful file read: " + JSON.stringify(readObj));
             outgoingObject = readObj;
             for (var key in readObj) {
@@ -514,7 +515,7 @@ var rfduinoble = evothings.rfduinoble;;
           app.logReading("Time: " + app.timeConverter(epoch), "Total Steps: " + steps, "HR Median: " + hr, "HR Dev: " + hrDev, "Batt: " + (bat * 0.0165).toFixed(3));
           logTimout = setTimeout(function() {
             console.log(JSON.stringify(historyObject));
-            app.writeFile(logFile, JSON.stringify(historyObject),true);
+            app.writeFile(logFile, JSON.stringify(historyObject));
           }, 1000);
         }
       }
@@ -566,7 +567,8 @@ var rfduinoble = evothings.rfduinoble;;
       };
       app.logReading = function(time, steps, hr, hrdev, batt) {
         document.getElementById("time").innerHTML = time;
-        document.getElementById("steps").innerHTML = steps;
+        document.getElementById("steps").innerHTML = steps;//stepsHome
+        document.getElementById("stepsHome").innerHTML = steps;
         document.getElementById("hr").innerHTML = hr;
         document.getElementById("hrdev").innerHTML = hrdev;
         document.getElementById("batt").innerHTML = batt;

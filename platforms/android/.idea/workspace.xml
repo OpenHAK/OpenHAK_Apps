@@ -17,8 +17,11 @@
   <component name="ChangeListManager">
     <list default="true" id="753e94fc-e60d-4b7e-a239-b6cb02657774" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/www/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/www/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../browser/www/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../browser/www/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../browser/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../browser/www/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../www/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../www/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../www/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,8 +42,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/assets/www/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="267" selection-start-line="267" selection-end-line="267" />
+            <state relative-caret-position="387">
+              <caret line="265" column="43" selection-start-line="265" selection-start-column="43" selection-end-line="265" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -205,8 +208,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/www/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="267" selection-start-line="267" selection-end-line="267" />
+        <state relative-caret-position="387">
+          <caret line="265" column="43" selection-start-line="265" selection-start-column="43" selection-end-line="265" selection-end-column="43" />
         </state>
       </provider>
     </entry>
