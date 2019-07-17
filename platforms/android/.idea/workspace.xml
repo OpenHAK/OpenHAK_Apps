@@ -17,14 +17,9 @@
   <component name="ChangeListManager">
     <list default="true" id="753e94fc-e60d-4b7e-a239-b6cb02657774" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/www/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/datagen.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/www/datagen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../browser/www/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../browser/www/datagen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../browser/www/datagen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../www/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../www/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../www/datagen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../www/datagen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/www/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../browser/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../browser/www/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../www/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,8 +39,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/assets/www/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-437">
-              <caret line="210" selection-start-line="210" selection-end-line="210" />
+            <state relative-caret-position="418">
+              <caret line="267" selection-start-line="267" selection-end-line="267" />
             </state>
           </provider>
         </entry>
@@ -179,6 +174,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1680" y="23" width="1680" height="1027" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.2735043" />
@@ -190,7 +186,7 @@
       <window_info id="Resources Explorer" order="7" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Run" order="0" />
-      <window_info active="true" anchor="bottom" x="-10" y="310" width="1689" height="1262" id="Logcat" order="1" type="WINDOWED" visible="true" weight="0.58451176" />
+      <window_info active="true" anchor="bottom" x="1" y="273" width="2368" height="1262" id="Logcat" order="1" type="WINDOWED" visible="true" weight="0.58451176" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32929516" />
       <window_info anchor="bottom" id="Terminal" order="4" />
@@ -209,8 +205,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/www/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-437">
-          <caret line="210" selection-start-line="210" selection-end-line="210" />
+        <state relative-caret-position="418">
+          <caret line="267" selection-start-line="267" selection-end-line="267" />
         </state>
       </provider>
     </entry>

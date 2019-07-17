@@ -514,7 +514,7 @@ var rfduinoble = evothings.rfduinoble;;
           app.logReading("Time: " + app.timeConverter(epoch), "Total Steps: " + steps, "HR Median: " + hr, "HR Dev: " + hrDev, "Batt: " + (bat * 0.0165).toFixed(3));
           logTimout = setTimeout(function() {
             console.log(JSON.stringify(historyObject));
-            app.writeFile(logFile, JSON.stringify(historyObject));
+            app.writeFile(logFile, JSON.stringify(historyObject),true);
           }, 1000);
         }
       }
