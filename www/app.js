@@ -32,21 +32,13 @@ var rfduinoble = evothings.rfduinoble;;
     var clearFiles = false;
     // Connected device.
     app.device = null;
+    //FileSystem fail event
     app.fail = function(e) {
       console.log("FileSystem Error");
       console.dir(e);
     }
+    // called to setup file system and create logging file
     app.checkFile = function() {
-      // window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(dir) {
-      // 	console.log("got main dir", dir);
-      // 	dir.getFile("log.txt", {
-      // 		create: true
-      // 	}, function(file) {
-      // 		console.log("got the file", file);
-      // 		logOb = file;
-      // 		app.writeLog("App started");
-      // 	});
-      // });
       window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fs) {
 
           console.log('file system open: ' + fs.name);
@@ -108,31 +100,9 @@ var rfduinoble = evothings.rfduinoble;;
                       }, errorHandler.bind(null, fileName));
                   }, errorHandler.bind(null, fileName));
               }, errorHandler.bind(null, fileName));
-            //var fileEntry = window.resolveLocalFileSystemURL(cordova.file.externalApplicationStorageDirectory+"data.json");
-            // fs.root.getFile("data.json", {
-            //   create: true,
-            //   exclusive: false
-            // }, function(fileEntry) {
-            //   console.log("logFile is file?" + fileEntry.isFile.toString());
-            //   var fileData;
-            //   readFromFile('data.json', function(data) {
-            //     fileData = data
-            //   })
-            //   console.log(fileEntry.name)
-            //   console.log("Log file Path:" + fileEntry.fullPath);
-            //   logFile = fileEntry;
-            //   if (clearFiles) {
-            //     app.writeFile(fileEntry, "{}");
-            //   }
-            //   google.setOnLoadCallback(function() {
-            //     //genSampleData(generateSamples)
-            //     app.loadHistory(fileEntry, historyObject);
-            //   });
-            //
-            //   //app.writeFile(fileEntry, null);
-            // }, app.fail);
           }, app.fail);
       }
+      //file error handler
       var errorHandler = function(fileName, e) {
         var msg = ''
 
@@ -166,31 +136,20 @@ var rfduinoble = evothings.rfduinoble;;
       app.onErrorLoadFs = function() {
         console.log("Error loading FS");
       }
+      //write to file object
       app.writeFile = function(fileEntry, inputString, append) {
         // Create a FileWriter object for our FileEntry (log.txt).
         fileEntry.createWriter(function(fileWriter) {
 
           fileWriter.onwriteend = function() {
             console.log("Successful file write...");
+            // TODO: DO WE REALLY NEED TO READ FROM THE FILE HERE?
             app.readFile(fileEntry);
           };
 
           fileWriter.onerror = function(e) {
             console.log("Failed file write: " + e.toString());
           };
-
-          // If data object is not passed in,
-          // create a new Blob instead.
-          // var dataStr = "{}"
-          // if (inputString!==null) {
-          // 	dataObj = new Blob([dataStr], {
-          // 		type: 'text/plain'
-          // 	});
-          // } else {
-          // 	dataObj = new Blob([inputString], {
-          // 		type: 'text/plain'
-          // 	});
-          // }
           dataObj = new Blob([inputString], {
             type: 'text/plain'
           });
@@ -204,6 +163,8 @@ var rfduinoble = evothings.rfduinoble;;
           fileWriter.write(dataObj);
         });
       }
+      // TODO: MAYBE DONT NEED THIS??
+      //read from file into outgoingObject
       app.readFile = function(fileEntry, outgoingObject) {
         console.log("Start file read");
         fileEntry.file(function(file) {
@@ -220,6 +181,7 @@ var rfduinoble = evothings.rfduinoble;;
 
         }, app.fail);
       }
+      //read from data log and create history object to graph
       app.loadHistory = function(fileEntry, outgoingObject) {
         console.log("Start file read");
         fileEntry.file(function(file) {
@@ -239,19 +201,15 @@ var rfduinoble = evothings.rfduinoble;;
               dataArray.push([d, obj.hr, obj.hrDev, obj.steps, obj.aux1, obj.aux2, obj.aux3])
               dataArray.sort(sortFunction);
             }
+            /*
             $.each(readObj, function() {
               //alert(this.id + " " + this.type);
               // var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
               // d.setUTCSeconds(this.epoch);
               // dataArray.push([d, this.hr, this.hrDev])
             });
-            // if(Object.keys(readObj).length >= 0 && readObj.constructor === Object){
-            // 	Object.keys(readObj).forEach(function(k){
-            // 		var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-            // 		d.setUTCSeconds(k.epoch);
-            // 		dataArray.push([d, k.hr, k.hrDev])
-            // 	}
-            // }
+            */
+
             console.log("Should draw chart");
             app.drawChart(dataArray);
             //displayFileData(fileEntry.fullPath + ": " + this.result);
@@ -261,56 +219,8 @@ var rfduinoble = evothings.rfduinoble;;
 
         }, app.fail);
       }
-      app.writeLog = function(str) {
-        if (!logOb) return;
-        var log = str + " [" + (new Date()) + "]\n";
-        console.log("going to log " + log);
-        logOb.createWriter(function(fileWriter) {
 
-          fileWriter.seek(fileWriter.length);
-
-          var blob = new Blob([log], {
-            type: 'text/plain'
-          });
-          fileWriter.write(blob);
-          console.log("ok, in theory i worked");
-          app.readAsText(logOb);
-        }, app.fail);
-      }
-      app.scanStop = function() {
-        console.log("stop scan");
-        showMessage("Not Scanning");
-        rfduinoble.stopScan();
-      }
-      app.scanStart = function() {
-        console.log("scanning");
-        showMessage("Scanning...");
-        app.knownDevices = {};
-        $("#deviceList").empty();
-        rfduinoble.scan("OpenHAK",
-          function(r) {
-            if (app.knownDevices[r.address]) {
-              return;
-            }
-            app.knownDevices[r.address] = r.address;
-            //var res = r.rssi + " " + r.name + " " + r.kCBAdvDataLocalName;
-            var res = r.rssi + " " + r.advertisementData.kCBAdvDataLocalName; //kCBAdvDataLocalName
-            console.log('scan result: ' + JSON.stringify(r));
-            var p = document.getElementById('deviceList');
-            var li = document.createElement('li');
-            var $a = $("<a class='device' href=\"#connected\">" + res + "</a>");
-            $(li).append($a);
-            $a.bind("click", {
-                address: r.address,
-                name: r.name,
-                device: r
-              },
-              app.eventDeviceClicked);
-            p.appendChild(li);
-            //$("#deviceList").listview("refresh");
-            console.log('found device: ' + r.name);
-          })
-      }
+      // Here is where we create the time sync message formated to transmit the current device time to the OpenHAK
       app.sendTimeSync = function() {
         var d = new Date();
         var utc = Math.floor((new Date()).getTime() / 1000)
@@ -346,6 +256,7 @@ var rfduinoble = evothings.rfduinoble;;
         // 	myInt = myInt & data[]
         // }
       };
+      //Here is where we ask the OpenHAK for all its stored data history
       app.getHistory = function() {
         sampleCount = 0;
         // dataArray = [
@@ -355,12 +266,14 @@ var rfduinoble = evothings.rfduinoble;;
         app.device && app.device.writeDataArray(new Uint8Array([3]));
 
       }
+      // TODO: See if this is still needed/works
+      // We can create a blank chart here, was usefully to make sure its drawn/cleared
       app.drawChartBlank = function(data) {
         var d = new Date(0);
         dataArray.push([d, 0, 0, 0, 0, 0, 0]);
         app.drawChart(dataArray);
       }
-
+      //Here is where we draw the data to the chart
       app.drawChart = function(data) {
 
         var chartdata = google.visualization.arrayToDataTable(data);
@@ -454,6 +367,7 @@ var rfduinoble = evothings.rfduinoble;;
 
         //chart.draw(data, options);
       }
+      //this is the data handler callback from when we get a message from the openhak
       app.rfdHandler = function(rfdData) {
         clearTimeout(logTimout);
         sampleCount++;
@@ -519,6 +433,7 @@ var rfduinoble = evothings.rfduinoble;;
           }, 1000);
         }
       }
+      //this is how we connect to an openhak from the list
       app.eventDeviceClicked = function(event) {
         console.log("should be connecting");
         showMessage("Connecting...");
@@ -556,9 +471,7 @@ var rfduinoble = evothings.rfduinoble;;
           });
       };
 
-      // showMessage = function(info) {
-      //   document.getElementById("info").innerHTML = info;
-      // };
+      //helper functions to write stuff to the UI for logging/debugging
       app.logMessage = function(log) {
         document.getElementById("log").innerHTML = log;
       };
@@ -575,44 +488,7 @@ var rfduinoble = evothings.rfduinoble;;
         document.getElementById("sampleCount").innerHTML = "Sample count: " + sampleCount;
       };
 
-      // Called when BLE and other native functions are available.
-      app.onDeviceReady = function() {
-        showMessage('Press "Scan" to find OpenHAKs');
-      };
-
-      app.disconnect = function() {
-        console.log("close");
-        rfduinoble.close();
-        console.log("disconnect");
-        showMessage("Disconnected");
-      }
-      app.connect = function() {
-        console.log("close");
-        rfduinoble.close();
-
-        // Wait 500 ms for close to complete before connecting.
-        setTimeout(function() {
-            console.log("connecting");
-            showMessage("Connecting...");
-            rfduinoble.connect(
-              "openhak",
-              function(device) {
-                console.log("connected");
-                showMessage("Connected");
-                app.device = device;
-                app.device && app.device.subscribe(function(data) {
-                  //console.log(data.length);
-                  var uint = new Uint32Array(data)[0];
-                  console.log(uint);
-                  showMessage('Logging: CO2 ' + uint + "0 ppm");
-                });
-              },
-              function(errorCode) {
-                showMessage("Connect error: " + errorCode);
-              });
-          },
-          500);
-      };
+      //this converts our timestamp from the openhak to a JS time object, I think
       app.timeConverter = function(UNIX_timestamp) {
         var a = new Date(UNIX_timestamp * 1000);
         var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -628,6 +504,7 @@ var rfduinoble = evothings.rfduinoble;;
         return time;
       }
 
+      //here is the MAIN js
       function main() {
         $(function() {
           // When document has loaded we attach FastClick to
@@ -657,6 +534,7 @@ var rfduinoble = evothings.rfduinoble;;
         // });
       }
 
+      // called when we're ready to go
       function onDeviceReady() {
         app.checkFile();
         // Un-gray buttons.
@@ -731,6 +609,7 @@ var rfduinoble = evothings.rfduinoble;;
         //genSampleData(generateSamples);
       }
 
+      // create sample data to test graphing
       function generateSamples(data) {
         app.drawChartBlank();
         console.log("calling back in generateSamples");
@@ -769,6 +648,7 @@ var rfduinoble = evothings.rfduinoble;;
         app.drawChart(dataArray);
       }
 
+      //simple sort function
       function sortFunction(a, b) {
         if (a[0] === b[0]) {
           return 0;
@@ -777,6 +657,7 @@ var rfduinoble = evothings.rfduinoble;;
         }
       }
 
+      //starts scanning for OpenHAKs
       function startScan() {
         // Make sure scan is stopped.
         stopScan(false)
@@ -808,6 +689,7 @@ var rfduinoble = evothings.rfduinoble;;
         showMessage('Scan Started')
       }
 
+      //stops scanning
       function stopScan(showMessageText) {
         // Stop scan.
         evothings.ble.stopScan()
@@ -831,18 +713,21 @@ var rfduinoble = evothings.rfduinoble;;
 
       }
 
+      //how we hide the side drawer
       function hideDrawerIfVisible() {
         if ($('.mdl-layout__drawer').hasClass('mdl-layout__drawer is-visible')) {
           document.querySelector('.mdl-layout').MaterialLayout.toggleDrawer()
         }
       }
 
+      //easy way to write message to screen
       function showMessage(message) {
         document.querySelector('.mdl-snackbar').MaterialSnackbar.showSnackbar({
           message: message
         })
       }
 
+      //shows available devices on the list
       function updateDeviceList() {
         var timeNow = Date.now();
 
@@ -857,6 +742,7 @@ var rfduinoble = evothings.rfduinoble;;
         })
       }
 
+      //lots of stuff to get devices filtered and displayed on the screen
       function displayDevice(device) {
         if (!deviceIsDisplayed(device)) {
           createDevice(device)
