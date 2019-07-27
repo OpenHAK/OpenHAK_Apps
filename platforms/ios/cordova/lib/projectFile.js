@@ -17,8 +17,6 @@
        under the License.
 */
 
-/*jshint node: true*/
-
 var xcode = require('xcode');
 var plist = require('plist');
 var _ = require('underscore');
@@ -26,11 +24,12 @@ var path = require('path');
 var fs = require('fs');
 var shell = require('shelljs');
 
+var pluginHandlers = require('./plugman/pluginHandlers');
 var CordovaError = require('cordova-common').CordovaError;
 
 var cachedProjectFiles = {};
 
-function parseProjectFile(locations) {
+function parseProjectFile (locations) {
     var project_dir = locations.root;
     var pbxPath = locations.pbxproj;
 
@@ -47,7 +46,7 @@ function parseProjectFile(locations) {
     var config_file = path.join(path.dirname(plist_file), 'config.xml');
 
     if (!fs.existsSync(plist_file) || !fs.existsSync(config_file)) {
-        throw new CordovaError('could not find -Info.plist file, or config.xml file.');
+        throw new CordovaError('Could not find *-Info.plist file, or config.xml file.');
     }
 
     var frameworks_file = path.join(project_dir, 'frameworks.json');
@@ -61,32 +60,38 @@ function parseProjectFile(locations) {
     var resourcesDir = path.resolve(xcode_dir, 'Resources');
 
     cachedProjectFiles[project_dir] = {
-        plugins_dir:pluginsDir,
-        resources_dir:resourcesDir,
-        xcode:xcodeproj,
-        xcode_path:xcode_dir,
+        plugins_dir: pluginsDir,
+        resources_dir: resourcesDir,
+        xcode: xcodeproj,
+        xcode_path: xcode_dir,
         pbx: pbxPath,
         projectDir: project_dir,
         platformWww: path.join(project_dir, 'platform_www'),
         www: path.join(project_dir, 'www'),
         write: function () {
             fs.writeFileSync(pbxPath, xcodeproj.writeSync());
-            if (Object.keys(this.frameworks).length === 0){
+            if (Object.keys(this.frameworks).length === 0) {
                 // If there is no framework references remain in the project, just remove this file
                 shell.rm('-rf', frameworks_file);
                 return;
             }
             fs.writeFileSync(frameworks_file, JSON.stringify(this.frameworks, null, 4));
         },
-        getPackageName: function() {
+        getPackageName: function () {
             return plist.parse(fs.readFileSync(plist_file, 'utf8')).CFBundleIdentifier;
+        },
+        getInstaller: function (name) {
+            return pluginHandlers.getInstaller(name);
+        },
+        getUninstaller: function (name) {
+            return pluginHandlers.getUninstaller(name);
         },
         frameworks: frameworks
     };
     return cachedProjectFiles[project_dir];
 }
 
-function purgeProjectFileCache(project_dir) {
+function purgeProjectFileCache (project_dir) {
     delete cachedProjectFiles[project_dir];
 }
 
@@ -108,7 +113,7 @@ xcode.project.prototype.addToPbxEmbedFrameworksBuildPhase = function (file) {
 xcode.project.prototype.removeFromPbxEmbedFrameworksBuildPhase = function (file) {
     var sources = this.pbxEmbedFrameworksBuildPhaseObj(file.target);
     if (sources) {
-        sources.files = _.reject(sources.files, function(file){
+        sources.files = _.reject(sources.files, function (file) {
             return file.comment === longComment(file);
         });
     }
@@ -117,13 +122,13 @@ xcode.project.prototype.removeFromPbxEmbedFrameworksBuildPhase = function (file)
 // special handlers to add frameworks to the 'Embed Frameworks' build phase, needed for custom frameworks
 // see CB-9517. should probably be moved to node-xcode.
 var util = require('util');
-function pbxBuildPhaseObj(file) {
+function pbxBuildPhaseObj (file) {
     var obj = Object.create(null);
     obj.value = file.uuid;
     obj.comment = longComment(file);
     return obj;
 }
 
-function longComment(file) {
+function longComment (file) {
     return util.format('%s in %s', file.basename, file.group);
 }

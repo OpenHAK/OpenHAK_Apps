@@ -9,6 +9,5 @@
     "CoreMotion.framework": 1,
     "AudioToolbox.framework": 2,
     "SystemConfiguration.framework": 1,
-    "CoreTelephony.framework": 1,
-    "UserNotifications.framework": 1
+    "CoreTelephony.framework": 1
 }

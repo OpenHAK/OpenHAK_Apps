@@ -45,7 +45,9 @@ static NSMutableArray* gPendingSetUserAgentBlocks = nil;
         NSString* localeStr = [[NSLocale currentLocale] localeIdentifier];
         // Record the model since simulator can change it without re-install (CB-5420).
         NSString* model = [UIDevice currentDevice].model;
-        NSString* systemAndLocale = [NSString stringWithFormat:@"%@ %@ %@", model, systemVersion, localeStr];
+        // Record the version of the app so that we can bust the cache when it changes (CB-10078)
+        NSString* appVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
+        NSString* systemAndLocale = [NSString stringWithFormat:@"%@ %@ %@ %@", appVersion, model, systemVersion, localeStr];
 
         NSString* cordovaUserAgentVersion = [userDefaults stringForKey:kCdvUserAgentVersionKey];
         gOriginalUserAgent = [userDefaults stringForKey:kCdvUserAgentKey];
@@ -88,14 +90,14 @@ static NSMutableArray* gPendingSetUserAgentBlocks = nil;
 
 + (void)releaseLock:(NSInteger*)lockToken
 {
-    if (*lockToken == 0) {
+    if (lockToken == nil || *lockToken == 0) {
         return;
     }
     NSAssert(gCurrentLockToken == *lockToken, @"Got token %ld, expected %ld", (long)*lockToken, (long)gCurrentLockToken);
 
     VerboseLog(@"Released lock %d", *lockToken);
     if ([gPendingSetUserAgentBlocks count] > 0) {
-        void (^block)() = [gPendingSetUserAgentBlocks objectAtIndex:0];
+        void (^block)(NSInteger lockToken) = [gPendingSetUserAgentBlocks objectAtIndex:0];
         [gPendingSetUserAgentBlocks removeObjectAtIndex:0];
         gCurrentLockToken = ++gNextLockToken;
         NSLog(@"Gave lock %ld", (long)gCurrentLockToken);

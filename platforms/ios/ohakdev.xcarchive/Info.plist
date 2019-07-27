@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ApplicationProperties</key>
+	<dict>
+		<key>ApplicationPath</key>
+		<string>Applications/ohakdev.app</string>
+		<key>CFBundleIdentifier</key>
+		<string>com.openhak.devapp</string>
+		<key>CFBundleShortVersionString</key>
+		<string>1.0.0</string>
+		<key>CFBundleVersion</key>
+		<string>1.0.0</string>
+		<key>SigningIdentity</key>
+		<string>iPhone Developer: leif Percifield (277EFN5TPL)</string>
+		<key>Team</key>
+		<string>Y8BUAV35Q6</string>
+	</dict>
+	<key>ArchiveVersion</key>
+	<integer>2</integer>
+	<key>CreationDate</key>
+	<date>2019-07-27T15:15:31Z</date>
+	<key>Name</key>
+	<string>ohakdev</string>
+	<key>SchemeName</key>
+	<string>ohakdev</string>
+</dict>
+</plist>

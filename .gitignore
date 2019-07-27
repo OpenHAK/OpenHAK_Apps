@@ -24,3 +24,5 @@ node_modules/
 
 # Cordova
 plugins/
+
+build.json
