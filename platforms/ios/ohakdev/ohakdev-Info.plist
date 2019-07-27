@@ -60,5 +60,7 @@
 	<string/>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>This app needs bluetooth access</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 </dict>
 </plist>

@@ -57,9 +57,10 @@ var rfduinoble = evothings.rfduinoble;;
           }, app.fail);
           var exportDirectory = "";
           var subdir = "OpenHAK";
-          // What directory should we place this in?
+          //What directory should we place this in?
           if (cordova.file.documentsDirectory !== null) {
             // iOS, OSX
+            console.log("!!USING DOCUMENTS!!");
             exportDirectory = cordova.file.documentsDirectory;
           } else if (cordova.file.sharedDirectory !== null) {
             // BB10
@@ -71,6 +72,7 @@ var rfduinoble = evothings.rfduinoble;;
             // iOS, Android, BlackBerry 10, windows
             exportDirectory = cordova.file.DataDirectory;
           }
+          //exportDirectory = cordova.file.syncedDataDirectory;
           var fileName = "data.json"
           window.resolveLocalFileSystemURL(exportDirectory, function(directoryEntry) {
               console.log("Got directoryEntry. Attempting to open / create subdirectory:" + subdir);
@@ -198,8 +200,11 @@ var rfduinoble = evothings.rfduinoble;;
               var obj = readObj[key];
               var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
               d.setUTCSeconds(obj.epoch);
-              dataArray.push([d, obj.hr, obj.hrDev, obj.steps, obj.aux1, obj.aux2, obj.aux3])
-              dataArray.sort(sortFunction);
+              if(d > 1559402597){
+                //console.log(d);
+                dataArray.push([d, obj.hr, obj.hrDev, obj.steps, obj.aux1, obj.aux2, obj.aux3])
+                dataArray.sort(sortFunction);
+              }
             }
             /*
             $.each(readObj, function() {
@@ -221,10 +226,13 @@ var rfduinoble = evothings.rfduinoble;;
       }
 
       // Here is where we create the time sync message formated to transmit the current device time to the OpenHAK
+      //// TODO: Send UTC offset from phone
       app.sendTimeSync = function() {
         var d = new Date();
+        var offset = d.getTimezoneOffset()/10;
         var utc = Math.floor((new Date()).getTime() / 1000)
         console.log(utc);
+        console.log("OFFSET: "+offset);
 
         function toBytesInt32(num) {
           arr = new Uint8Array([
@@ -246,7 +254,7 @@ var rfduinoble = evothings.rfduinoble;;
         //clearTimeout(offTimer);
         //console.log(output.toString());
         //var output = new Uint8Array(bytesFromHex(utc.toString(),6));
-        app.device && app.device.writeDataArray(new Uint8Array([10, output[0], output[1], output[2], output[3]]));
+        app.device && app.device.writeDataArray(new Uint8Array([10, output[0], output[1], output[2], output[3], offset]));
         // offTimer = setTimeout(function(){
         // 	app.device && app.device.writeDataArray(new Uint8Array([R, G, B, 0x02, 0x05]));
         // },1500)
@@ -401,19 +409,19 @@ var rfduinoble = evothings.rfduinoble;;
           "aux2": Number(aux2) || 0,
           "aux3": Number(aux3) || 0
         }
+        console.log(epoch);
         if (!isNaN(epoch)) {
           if (!historyObject.hasOwnProperty(epoch)) {
             historyObject[epoch] = sampleObj;
-            console.log(JSON.stringify(historyObject));
+
+            //console.log(JSON.stringify(historyObject));
             var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
             d.setUTCSeconds(epoch);
             //dataArray.push([d, hr, hrDev])
             dataArray.push([d, sampleObj.hr, sampleObj.hrDev, sampleObj.steps, sampleObj.aux1, sampleObj.aux2, sampleObj.aux3])
             dataArray.sort(sortFunction);
-            if (dataArray.length > 3) {
-              app.drawChart(dataArray);
-            }
-            console.log("sample time: " + epoch + " Steps: " + steps + " hr: " + hr + " hr dev: " + hrDev + " batt: " + (bat * 0.0165).toFixed(3) + " sample count: " + sampleCount);
+
+            //console.log("sample time: " + epoch + " Steps: " + steps + " hr: " + hr + " hr dev: " + hrDev + " batt: " + (bat * 0.0165).toFixed(3) + " sample count: " + sampleCount);
             myString = "Time: " + app.timeConverter(epoch) + " Steps: " + steps + " HR Median: " + hr + " HR Dev: " + hrDev;
           }
           //new Date(Milliseconds)
@@ -428,7 +436,11 @@ var rfduinoble = evothings.rfduinoble;;
           //myString = myString + myDataArray[0];
           app.logReading("Time: " + app.timeConverter(epoch), "Total Steps: " + steps, "HR Median: " + hr, "HR Dev: " + hrDev, "Batt: " + (bat * 0.0165).toFixed(3));
           logTimout = setTimeout(function() {
-            console.log(JSON.stringify(historyObject));
+            console.log("TIMEOUT RUNNING");
+            if (dataArray.length > 3) {
+              app.drawChart(dataArray);
+            }
+            //console.log(dataArray);
             app.writeFile(logFile, JSON.stringify(historyObject));
           }, 1000);
         }
@@ -818,6 +830,9 @@ var rfduinoble = evothings.rfduinoble;;
             //console.log("trying to connect");
             stopScan("Connecting...")
             app.eventDeviceClicked(event);
+          }else{
+            stopScan("Disconnecting...")
+            rfduinoble.close();
           }
         });
       }

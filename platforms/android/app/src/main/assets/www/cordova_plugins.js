@@ -420,6 +420,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-statusbar": "2.2.3",
     "cordova-plugin-vibration": "2.1.5",
     "cordova-plugin-whitelist": "1.3.2",
-    "cordova-plugin-ios-bluetooth-permissions": "1.0.0"
+    "cordova-plugin-ios-bluetooth-permissions": "1.0.0",
+    "cordova-plugin-itunesfilesharing": "0.0.2"
   };
 });
