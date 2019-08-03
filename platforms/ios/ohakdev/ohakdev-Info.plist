@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.7</string>
+	<string>1.0.8</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.7</string>
+	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -38,7 +38,9 @@
 	<key>NSMainNibFile</key>
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>This app will need access to photo library to capture and store graphs</string>
+	<key>NSPhotoLibraryUsageDescription </key>
+	<string>This app will need access to photo library to capture graph outputs</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
