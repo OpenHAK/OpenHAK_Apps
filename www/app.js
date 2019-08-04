@@ -231,8 +231,14 @@ var rfduinoble = evothings.rfduinoble;;
         var d = new Date();
         var offset = d.getTimezoneOffset()/10;
         var utc = Math.floor((new Date()).getTime() / 1000)
+        offset = offset * -1;
+        //var offArr = arr = new Uint8Array(offset);
         console.log(utc);
         console.log("OFFSET: "+offset);
+        var offsetHex = offset.toString(16);
+        console.log("OFFSET HEX :"+offsetHex);
+        //var responseData= Buffer.from( offset, 'utf8' )
+        //console.log("OFFSET DEX :"+responseData[0]);
 
         function toBytesInt32(num) {
           arr = new Uint8Array([
@@ -491,7 +497,9 @@ var rfduinoble = evothings.rfduinoble;;
         document.getElementById("log2").innerHTML = log;
       };
       app.logReading = function(time, steps, hr, hrdev, batt) {
-        document.getElementById("time").innerHTML = time;
+        //var d = new Date();
+        //var offset = d.getTimezoneOffset()/10;
+        document.getElementById("time").innerHTML = time; //+ " Offset: "+ offset;
         document.getElementById("steps").innerHTML = steps;//stepsHome
         document.getElementById("stepsHome").innerHTML = steps;
         document.getElementById("hr").innerHTML = hr;
